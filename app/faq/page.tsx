@@ -116,7 +116,10 @@ const faqs = [
       },
       {
         question: "Who developed this website?",
-        answer: "This website was developed by Hemant Dobriyal. For website-related inquiries, you can contact: Email - hemanthdobriyal@gmail.com, Phone - 8686545253",
+        answer: "This website was developed by Hemant Dobriyal. For website-related inquiries, you can contact: Email - ",
+        answerWithLinks: true,
+        email: "hemanthdobriyal@gmail.com",
+        phone: "8686545253",
       },
     ],
   },
@@ -156,19 +159,44 @@ export default function FAQPage() {
               transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
               className="mb-12"
             >
-              <h2 className="text-2xl font-bold mb-6 text-red-600">{category.category}</h2>
-              <Accordion type="single" collapsible className="w-full">
-                {category.questions.map((faq, index) => (
-                  <AccordionItem key={index} value={`item-${categoryIndex}-${index}`} className="bg-gray-900 border border-red-600/30 mb-2 rounded-lg px-4">
-                    <AccordionTrigger className="text-left font-semibold hover:text-red-600 text-white">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-gray-300 pt-2">
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+              {/* Category Box */}
+              <div className="bg-gradient-to-br from-gray-800 via-gray-800/95 to-gray-900 border-2 border-red-600/40 rounded-xl p-6 shadow-2xl shadow-red-600/10 hover:shadow-red-600/20 transition-all duration-300 hover:border-red-600/60">
+                <h2 className="text-2xl font-bold mb-6 text-red-600 flex items-center gap-3">
+                  <span className="w-1 h-8 bg-red-600 rounded-full"></span>
+                  {category.category}
+                </h2>
+                <Accordion type="single" collapsible className="w-full">
+                  {category.questions.map((faq, index) => (
+                    <AccordionItem key={index} value={`item-${categoryIndex}-${index}`} className="bg-gray-900/50 border border-red-600/30 mb-3 rounded-lg px-4 hover:border-red-600/50 transition-colors">
+                      <AccordionTrigger className="text-left font-semibold hover:text-red-600 text-white">
+                        {faq.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-gray-300 pt-2">
+                        {faq.answerWithLinks && faq.email && faq.phone ? (
+                          <>
+                            {faq.answer}
+                            <a 
+                              href={`mailto:${faq.email}`} 
+                              className="text-red-600 hover:text-red-500 hover:underline font-medium transition-colors"
+                            >
+                              {faq.email}
+                            </a>
+                            {", Phone - "}
+                            <a 
+                              href={`tel:${faq.phone}`} 
+                              className="text-red-600 hover:text-red-500 hover:underline font-medium transition-colors"
+                            >
+                              {faq.phone}
+                            </a>
+                          </>
+                        ) : (
+                          faq.answer
+                        )}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
             </motion.div>
           ))}
         </div>
