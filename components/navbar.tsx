@@ -46,6 +46,7 @@ export function Navbar() {
           : "bg-transparent backdrop-blur-none border-transparent"
       }`}
     >
+      
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
