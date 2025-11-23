@@ -96,7 +96,7 @@ const faqs = [
     questions: [
       {
         question: "What are your operating hours?",
-        answer: "We're open Monday through Thursday from 6:00 AM - 11:00 AM and 5:00 PM - 10:00 PM. Friday through Sunday: 6:00 AM - 11:00 AM and 5:00 PM - 10:00 PM. Gold and Platinum members have 24/7 access.",
+        answer: "We're open Monday through Saturday from 6:00 AM - 11:00 AM and 5:00 PM - 10:00 PM. Sunday: 6:00 AM - 10:00 AM. Gold and Platinum members have 24/7 access.",
       },
       {
         question: "Do you offer nutrition guidance?",
@@ -112,7 +112,7 @@ const faqs = [
       },
       {
         question: "How do I contact you?",
-        answer: "You can reach us by phone at 077025 53859, email at info@teammusclefitness.com, or visit us at our location in Bowenpally, Hyderabad. You can also use the contact form on our website.",
+        answer: "You can reach us by phone at 077025 53859, email at Tmfitness71@gmail.com, or visit us at our location in Bowenpally, Hyderabad. You can also use the contact form on our website.",
       },
     ],
   },
@@ -120,7 +120,7 @@ const faqs = [
 
 export default function FAQPage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-black text-white">
       <Navbar />
       
       {/* Header */}
@@ -155,11 +155,11 @@ export default function FAQPage() {
               <h2 className="text-2xl font-bold mb-6 text-red-600">{category.category}</h2>
               <Accordion type="single" collapsible className="w-full">
                 {category.questions.map((faq, index) => (
-                  <AccordionItem key={index} value={`item-${categoryIndex}-${index}`} className="bg-white mb-2 rounded-lg px-4">
-                    <AccordionTrigger className="text-left font-semibold hover:text-red-600">
+                  <AccordionItem key={index} value={`item-${categoryIndex}-${index}`} className="bg-gray-900 border border-red-600/30 mb-2 rounded-lg px-4">
+                    <AccordionTrigger className="text-left font-semibold hover:text-red-600 text-white">
                       {faq.question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-gray-700 pt-2">
+                    <AccordionContent className="text-gray-300 pt-2">
                       {faq.answer}
                     </AccordionContent>
                   </AccordionItem>
@@ -171,7 +171,7 @@ export default function FAQPage() {
       </section>
 
       {/* Still Have Questions */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-black">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -180,8 +180,8 @@ export default function FAQPage() {
             transition={{ duration: 0.8 }}
             className="max-w-2xl mx-auto"
           >
-            <h2 className="text-3xl font-bold mb-4">Still Have Questions?</h2>
-            <p className="text-lg text-gray-600 mb-8">
+            <h2 className="text-3xl font-bold mb-4 text-white">Still Have Questions?</h2>
+            <p className="text-lg text-gray-300 mb-8">
               Can&apos;t find the answer you&apos;re looking for? Please get in touch with our friendly team.
             </p>
             <a href="/contact">

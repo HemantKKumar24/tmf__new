@@ -8,7 +8,7 @@ import { Footer } from "@/components/footer"
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-black text-white">
       <Navbar />
       
       {/* Header */}
@@ -29,7 +29,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <motion.div
@@ -39,8 +39,8 @@ export default function AboutPage() {
               transition={{ duration: 0.8 }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Mission</h2>
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Our Mission</h2>
+              <p className="text-lg text-gray-300 leading-relaxed">
                 At TEAM MUSCLE FITNESS, we believe that fitness is not just about physical strength, 
                 but about building confidence, discipline, and a positive mindset. Our mission is to 
                 provide a supportive environment where everyone, regardless of their fitness level, 
@@ -58,8 +58,8 @@ export default function AboutPage() {
                 <Card>
                   <CardContent className="p-6">
                     <Target className="h-12 w-12 text-red-600 mb-4" />
-                    <h3 className="text-xl font-semibold mb-3">Our Vision</h3>
-                    <p className="text-gray-700">
+                    <h3 className="text-xl font-semibold mb-3 text-white">Our Vision</h3>
+                    <p className="text-gray-300">
                       To be Hyderabad&apos;s leading fitness destination, inspiring and empowering 
                       individuals to lead healthier, more active lives through world-class facilities 
                       and expert guidance.
@@ -77,8 +77,8 @@ export default function AboutPage() {
                 <Card>
                   <CardContent className="p-6">
                     <Heart className="h-12 w-12 text-red-600 mb-4" />
-                    <h3 className="text-xl font-semibold mb-3">Our Values</h3>
-                    <p className="text-gray-700">
+                    <h3 className="text-xl font-semibold mb-3 text-white">Our Values</h3>
+                    <p className="text-gray-300">
                       We are committed to excellence, integrity, and creating a welcoming community 
                       where every member feels valued and supported in their fitness journey.
                     </p>
@@ -100,8 +100,8 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Us?</h2>
-            <p className="text-lg text-gray-600">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-red-600">Why Choose Us?</h2>
+            <p className="text-lg text-gray-300">
               Experience the difference with our comprehensive approach to fitness
             </p>
           </motion.div>
@@ -171,7 +171,7 @@ export default function AboutPage() {
       </section>
 
       {/* Location */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-black">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -180,21 +180,21 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Visit Us</h2>
-            <p className="text-lg text-gray-700 mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Visit Us</h2>
+            <p className="text-lg text-gray-300 mb-8">
               Located in the heart of Bowenpally, Hyderabad, we&apos;re easily accessible and 
               offer ample parking facilities.
             </p>
-            <Card>
+            <Card className="bg-gray-900 border-red-600/30">
               <CardContent className="p-8">
-                <p className="text-lg font-semibold mb-2">TEAM MUSCLE FITNESS GYM</p>
-                <p className="text-gray-700 mb-4">
+                <p className="text-lg font-semibold mb-2 text-white">TEAM MUSCLE FITNESS GYM</p>
+                <p className="text-gray-300 mb-4">
                   Vegetable Market, Opposite Al Ridaan Hotel,<br />
                   Anjaiah Nagar, Bowenpally,<br />
                   Hyderabad, Secunderabad,<br />
                   Telangana 500009
                 </p>
-                <p className="text-gray-700">
+                <p className="text-gray-300">
                   Phone: <a href="tel:07702553859" className="text-red-600 hover:underline">077025 53859</a>
                 </p>
               </CardContent>

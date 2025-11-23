@@ -77,8 +77,20 @@ export default function CoachesPage() {
       </section>
 
       {/* Main Coach - Rahemath Khan */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 bg-black overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: "url('/bg_pic/2.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+          }}
+        />
+        <div className="absolute inset-0 bg-black/80"></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -86,9 +98,44 @@ export default function CoachesPage() {
             transition={{ duration: 0.8 }}
             className="max-w-6xl mx-auto"
           >
+            {/* Coach Image with Animated Border */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="mb-12 flex justify-center"
+            >
+              <div className="relative group">
+                {/* Animated Border */}
+                <div className="absolute -inset-2 bg-gradient-to-r from-red-600 via-red-500 to-red-600 rounded-lg opacity-75 group-hover:opacity-100 blur-sm animate-pulse"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-red-600 via-red-400 to-red-600 rounded-lg opacity-50 animate-spin-slow"></div>
+                
+                {/* Image Container */}
+                <div className="relative rounded-lg overflow-hidden border-4 border-red-600 shadow-2xl">
+                  <motion.img
+                    src="/bg_pic/2.png"
+                    alt="Mohammed Rahemathkhan - Master Trainer"
+                    className="w-full max-w-md h-auto object-cover"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  {/* Overlay Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  
+                  {/* Badge Overlay */}
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <Badge className="bg-red-600 text-white text-lg px-4 py-2">
+                      Founder & Master Trainer
+                    </Badge>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
             <Card className="bg-gradient-to-br from-gray-900 to-black border-2 border-red-600/50 overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Left Side - Image/Info */}
+                {/* Left Side - Info */}
                 <div className="p-8 lg:p-12">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}

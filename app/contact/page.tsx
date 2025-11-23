@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useState } from "react"
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react"
+import { MapPin, Phone, Mail, Clock, Send, Facebook, Instagram, Twitter, Youtube } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -29,7 +29,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-black text-white">
       <Navbar />
       
       {/* Header */}
@@ -150,7 +150,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1">Address</h3>
-                      <p className="text-gray-700">
+                      <p className="text-gray-300">
                         Vegetable Market, Opposite Al Ridaan Hotel,<br />
                         Anjaiah Nagar, Bowenpally,<br />
                         Hyderabad, Secunderabad,<br />
@@ -181,8 +181,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1">Email</h3>
-                      <a href="mailto:info@teammusclefitness.com" className="text-red-600 hover:underline">
-                        info@teammusclefitness.com
+                      <a href="mailto:Tmfitness71@gmail.com" className="text-red-600 hover:underline">
+                        Tmfitness71@gmail.com
                       </a>
                     </div>
                   </div>
@@ -195,9 +195,9 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1">Working Hours</h3>
-                      <div className="text-gray-700 space-y-1">
-                        <p>Monday - Thursday: 6:00 AM - 11:00 AM, 5:00 PM - 10:00 PM</p>
-                        <p>Friday - Sunday: 6:00 AM - 11:00 AM, 5:00 PM - 10:00 PM</p>
+                      <div className="text-gray-300 space-y-1">
+                        <p>Monday - Saturday: 6:00 AM - 11:00 AM, 5:00 PM - 10:00 PM</p>
+                        <p>Sunday: 6:00 AM - 10:00 AM</p>
                       </div>
                     </div>
                   </div>
@@ -211,6 +211,43 @@ export default function ContactPage() {
                     Feel free to visit us during our working hours. Our team will be happy to give you a tour 
                     of our facilities and answer any questions you may have.
                   </p>
+                </CardContent>
+              </Card>
+
+              {/* Social Media */}
+              <Card className="bg-gray-900 border-red-600/30">
+                <CardHeader>
+                  <CardTitle className="text-white">Follow Us</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-col gap-4">
+                    <a 
+                      href="https://www.facebook.com/108621378746408?ref=pro_upsell_xav_ig_profile_page_web" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-3 text-gray-300 hover:text-red-600 transition-colors"
+                    >
+                      <Facebook className="h-5 w-5" />
+                      <span>Facebook</span>
+                    </a>
+                    <a 
+                      href="https://www.instagram.com/team_muscle_fitness_gym/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-3 text-gray-300 hover:text-red-600 transition-colors"
+                    >
+                      <Instagram className="h-5 w-5" />
+                      <span>Instagram</span>
+                    </a>
+                    <div className="flex items-center space-x-3 text-gray-500 opacity-50">
+                      <Twitter className="h-5 w-5" />
+                      <span>Twitter (Coming Soon)</span>
+                    </div>
+                    <div className="flex items-center space-x-3 text-gray-500 opacity-50">
+                      <Youtube className="h-5 w-5" />
+                      <span>YouTube (Coming Soon)</span>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>

@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Dumbbell, Mail, Lock, User, Phone, AlertCircle, CheckCircle } from "lucide-react"
+import { Mail, Lock, User, Phone, AlertCircle, CheckCircle, Eye, EyeOff } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -22,6 +22,8 @@ export default function RegisterPage() {
     password: "",
     confirmPassword: "",
   })
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [error, setError] = useState("")
   const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -73,50 +75,80 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-black text-white">
       <Navbar />
       
-      <section className="flex-1 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 py-20">
+      <section className="flex-1 flex items-center justify-center bg-gradient-to-br from-black via-red-950/20 to-black py-20 relative overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: "url('/bg_pic/2.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+          }}
+        />
+        <div className="absolute inset-0 bg-black/60"></div>
+        
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="w-full max-w-md"
+          className="w-full max-w-md relative z-10"
         >
-          <Card>
-            <CardHeader className="text-center">
-              <div className="flex justify-center mb-4">
-                <div className="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center">
-                  <Dumbbell className="h-8 w-8 text-red-600" />
-                </div>
-              </div>
-              <CardTitle className="text-2xl">Create Account</CardTitle>
-              <CardDescription>
+          <Card className="bg-gradient-to-br from-gray-900 to-black border-2 border-red-600/50 shadow-2xl">
+            <CardHeader className="text-center space-y-4">
+              <motion.div
+                initial={{ scale: 0, rotate: -180 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ delay: 0.2, type: "spring" }}
+                className="flex justify-center mb-4"
+              >
+                <img 
+                  src="/bg_pic/tmf_no_bg.png" 
+                  alt="TEAM MUSCLE FITNESS" 
+                  className="h-28 w-auto object-contain"
+                  style={{ filter: 'brightness(1.15) contrast(1.15)' }}
+                />
+              </motion.div>
+              <CardTitle className="text-3xl md:text-4xl font-bold text-white tracking-tight">Create Account</CardTitle>
+              <CardDescription className="text-gray-300 text-lg font-light">
                 Join TEAM MUSCLE FITNESS and start your fitness journey
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-5">
                 {error && (
-                  <Alert variant="destructive">
-                    <AlertCircle className="h-4 w-4" />
-                    <AlertDescription>{error}</AlertDescription>
-                  </Alert>
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                  >
+                    <Alert variant="destructive" className="bg-red-600/20 border-red-600">
+                      <AlertCircle className="h-4 w-4" />
+                      <AlertDescription className="text-red-300">{error}</AlertDescription>
+                    </Alert>
+                  </motion.div>
                 )}
 
                 {success && (
-                  <Alert className="bg-green-50 border-green-200">
-                    <CheckCircle className="h-4 w-4 text-green-600" />
-                    <AlertDescription className="text-green-800">
-                      Registration successful! Redirecting to login...
-                    </AlertDescription>
-                  </Alert>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                  >
+                    <Alert className="bg-green-600/20 border-green-600">
+                      <CheckCircle className="h-4 w-4 text-green-400" />
+                      <AlertDescription className="text-green-300">
+                        Registration successful! Redirecting to login...
+                      </AlertDescription>
+                    </Alert>
+                  </motion.div>
                 )}
                 
                 <div className="space-y-2">
-                  <Label htmlFor="name">Full Name</Label>
+                  <Label htmlFor="name" className="text-white">Full Name</Label>
                   <div className="relative">
-                    <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                    <User className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                     <Input
                       id="name"
                       type="text"
@@ -124,15 +156,15 @@ export default function RegisterPage() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       required
-                      className="pl-10"
+                      className="pl-10 bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email" className="text-white">Email</Label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                    <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                     <Input
                       id="email"
                       type="email"
@@ -140,70 +172,84 @@ export default function RegisterPage() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       required
-                      className="pl-10"
+                      className="pl-10 bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number</Label>
+                  <Label htmlFor="phone" className="text-white">Phone Number</Label>
                   <div className="relative">
-                    <Phone className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                    <Phone className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                     <Input
                       id="phone"
                       type="tel"
                       placeholder="+91 1234567890"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="pl-10"
+                      className="pl-10 bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="password" className="text-white">Password</Label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                    <Lock className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                     <Input
                       id="password"
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       placeholder="At least 6 characters"
                       value={formData.password}
                       onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                       required
-                      className="pl-10"
+                      className="pl-10 pr-10 bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
                     />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-3 text-gray-400 hover:text-red-600 transition-colors"
+                    >
+                      {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                    </button>
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="confirmPassword">Confirm Password</Label>
+                  <Label htmlFor="confirmPassword" className="text-white">Confirm Password</Label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                    <Lock className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                     <Input
                       id="confirmPassword"
-                      type="password"
+                      type={showConfirmPassword ? "text" : "password"}
                       placeholder="Confirm your password"
                       value={formData.confirmPassword}
                       onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                       required
-                      className="pl-10"
+                      className="pl-10 pr-10 bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
                     />
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      className="absolute right-3 top-3 text-gray-400 hover:text-red-600 transition-colors"
+                    >
+                      {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                    </button>
                   </div>
                 </div>
 
                 <Button
                   type="submit"
-                  className="w-full bg-red-600 hover:bg-red-700"
-                  disabled={loading || success}
+                  className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-6 text-lg opacity-50 cursor-not-allowed"
+                  disabled={true}
                 >
-                  {loading ? "Creating account..." : success ? "Account Created!" : "Create Account"}
+                  Coming Soon
                 </Button>
               </form>
 
               <div className="mt-6 text-center text-sm">
-                <span className="text-gray-600">Already have an account? </span>
-                <Link href="/login" className="text-red-600 hover:underline font-semibold">
+                <span className="text-gray-400">Already have an account? </span>
+                <Link href="/login" className="text-red-600 hover:text-red-400 hover:underline font-semibold transition-colors">
                   Sign in
                 </Link>
               </div>
@@ -216,4 +262,3 @@ export default function RegisterPage() {
     </div>
   )
 }
-

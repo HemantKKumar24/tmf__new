@@ -84,7 +84,7 @@ const testimonials = [
 
 export default function TestimonialsPage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-black text-white">
       <Navbar />
       
       {/* Header */}
@@ -105,8 +105,19 @@ export default function TestimonialsPage() {
       </section>
 
       {/* Testimonials Grid */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 bg-gray-900 overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 opacity-15"
+          style={{
+            backgroundImage: "url('/bg_pic/3.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+          }}
+        />
+        <div className="absolute inset-0 bg-black/70"></div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <motion.div
@@ -136,7 +147,7 @@ export default function TestimonialsPage() {
                     </div>
                     
                     <Quote className="h-6 w-6 text-red-600 mb-2 opacity-50" />
-                    <p className="text-gray-700 mb-4 italic">{testimonial.comment}</p>
+                    <p className="text-gray-300 mb-4 italic">{testimonial.comment}</p>
                     
                     <p className="text-xs text-gray-500">
                       Member for {testimonial.months} {testimonial.months === 1 ? "month" : "months"}
@@ -150,7 +161,7 @@ export default function TestimonialsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-black">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -159,8 +170,8 @@ export default function TestimonialsPage() {
             transition={{ duration: 0.8 }}
             className="max-w-2xl mx-auto"
           >
-            <h2 className="text-3xl font-bold mb-4">Ready to Join Our Community?</h2>
-            <p className="text-lg text-gray-600 mb-8">
+            <h2 className="text-3xl font-bold mb-4 text-white">Ready to Join Our Community?</h2>
+            <p className="text-lg text-gray-300 mb-8">
               Become part of thousands of members who are transforming their lives every day
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -170,7 +181,7 @@ export default function TestimonialsPage() {
                 </button>
               </a>
               <a href="/plans" className="inline-block">
-                <button className="border-2 border-red-600 text-red-600 hover:bg-red-50 px-8 py-3 rounded-lg font-semibold transition-colors">
+                <button className="border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors">
                   View Plans
                 </button>
               </a>

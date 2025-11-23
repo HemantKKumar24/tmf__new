@@ -2,9 +2,9 @@
 
 import Link from "next/link"
 import { useSession, signOut } from "next-auth/react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, User, LogOut, Calendar, CreditCard, Dumbbell } from "lucide-react"
+import { Menu, X, User, LogOut, Calendar, CreditCard } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   NavigationMenu,
@@ -26,16 +26,38 @@ import {
 export function Navbar() {
   const { data: session } = useSession()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY
+      setScrolled(scrollPosition > 100)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <nav 
+      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
+        scrolled 
+          ? "bg-background/90 backdrop-blur-md border-b border-gray-800/50" 
+          : "bg-transparent backdrop-blur-none border-transparent"
+      }`}
+    >
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <div className="flex items-center space-x-2">
-              <Dumbbell className="h-6 w-6 text-red-600" />
-              <span className="text-xl font-bold text-red-600">TEAM MUSCLE FITNESS</span>
+              <img 
+                src="/bg_pic/tmf_no_bg.png" 
+                alt="TEAM MUSCLE FITNESS" 
+                className="h-14 w-auto object-contain"
+                style={{ filter: 'brightness(1.15) contrast(1.15)' }}
+              />
+              <span className="text-xl font-bold text-red-600 hidden sm:inline tracking-tight font-montserrat">TEAM MUSCLE FITNESS</span>
             </div>
           </Link>
 
@@ -60,13 +82,6 @@ export function Navbar() {
                 <Link href="/schedule" legacyBehavior passHref>
                   <NavigationMenuLink className="px-4 py-2 text-sm font-medium hover:text-red-600 transition-colors">
                     Schedule
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/testimonials" legacyBehavior passHref>
-                  <NavigationMenuLink className="px-4 py-2 text-sm font-medium hover:text-red-600 transition-colors">
-                    Testimonials
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
@@ -197,9 +212,6 @@ export function Navbar() {
               </Link>
               <Link href="/schedule" className="block py-2 text-sm font-medium hover:text-red-600">
                 Schedule
-              </Link>
-              <Link href="/testimonials" className="block py-2 text-sm font-medium hover:text-red-600">
-                Testimonials
               </Link>
               <Link href="/coaches" className="block py-2 text-sm font-medium hover:text-red-600">
                 Coaches

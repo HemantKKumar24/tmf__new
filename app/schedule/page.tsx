@@ -16,7 +16,7 @@ const classes = [
   {
     id: "1",
     name: "Morning Cardio",
-    instructor: "Rajesh Kumar",
+    instructor: "Rahemathkhan",
     dayOfWeek: 1, // Monday
     startTime: "06:00",
     endTime: "07:00",
@@ -28,7 +28,7 @@ const classes = [
   {
     id: "2",
     name: "Strength Training",
-    instructor: "Priya Sharma",
+    instructor: "Rahemathkhan",
     dayOfWeek: 1,
     startTime: "07:00",
     endTime: "08:00",
@@ -40,7 +40,7 @@ const classes = [
   {
     id: "3",
     name: "Yoga & Flexibility",
-    instructor: "Anita Reddy",
+    instructor: "Surendar",
     dayOfWeek: 1,
     startTime: "18:00",
     endTime: "19:00",
@@ -52,7 +52,7 @@ const classes = [
   {
     id: "4",
     name: "HIIT Training",
-    instructor: "Vikram Singh",
+    instructor: "Rahemathkhan",
     dayOfWeek: 1,
     startTime: "19:00",
     endTime: "20:00",
@@ -64,7 +64,7 @@ const classes = [
   {
     id: "5",
     name: "Zumba Dance",
-    instructor: "Meera Patel",
+    instructor: "Surendar",
     dayOfWeek: 2, // Tuesday
     startTime: "18:00",
     endTime: "19:00",
@@ -76,7 +76,7 @@ const classes = [
   {
     id: "6",
     name: "CrossFit",
-    instructor: "Arjun Nair",
+    instructor: "Rahemathkhan",
     dayOfWeek: 2,
     startTime: "19:00",
     endTime: "20:00",
@@ -88,7 +88,7 @@ const classes = [
   {
     id: "7",
     name: "Pilates",
-    instructor: "Sneha Iyer",
+    instructor: "Rahemathkhan",
     dayOfWeek: 3, // Wednesday
     startTime: "07:00",
     endTime: "08:00",
@@ -100,7 +100,7 @@ const classes = [
   {
     id: "8",
     name: "Boxing",
-    instructor: "Rahul Verma",
+    instructor: "Rahemathkhan",
     dayOfWeek: 3,
     startTime: "19:00",
     endTime: "20:00",
@@ -112,7 +112,7 @@ const classes = [
   {
     id: "9",
     name: "Spin Class",
-    instructor: "Deepak Rao",
+    instructor: "Rahemathkhan",
     dayOfWeek: 4, // Thursday
     startTime: "18:00",
     endTime: "19:00",
@@ -124,7 +124,7 @@ const classes = [
   {
     id: "10",
     name: "Body Combat",
-    instructor: "Kavita Menon",
+    instructor: "Rahemathkhan",
     dayOfWeek: 5, // Friday
     startTime: "18:00",
     endTime: "19:00",
@@ -136,7 +136,7 @@ const classes = [
   {
     id: "11",
     name: "Power Yoga",
-    instructor: "Anita Reddy",
+    instructor: "Surendar",
     dayOfWeek: 6, // Saturday
     startTime: "07:00",
     endTime: "08:00",
@@ -148,7 +148,7 @@ const classes = [
   {
     id: "12",
     name: "Bootcamp",
-    instructor: "Rajesh Kumar",
+    instructor: "Rahemathkhan",
     dayOfWeek: 0, // Sunday
     startTime: "07:00",
     endTime: "08:00",
@@ -190,8 +190,19 @@ export default function SchedulePage() {
       </section>
 
       {/* Schedule */}
-      <section className="py-20 bg-gray-900">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 bg-gray-900 overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 opacity-15"
+          style={{
+            backgroundImage: "url('/bg_pic/1.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+          }}
+        />
+        <div className="absolute inset-0 bg-black/70"></div>
+        <div className="container mx-auto px-4 relative z-10">
           <Tabs value={selectedDay.toString()} onValueChange={(val) => setSelectedDay(parseInt(val))} className="w-full">
             <TabsList className="grid w-full grid-cols-7 mb-8">
               {daysOfWeek.map((day, index) => (
@@ -294,22 +305,21 @@ export default function SchedulePage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center py-2 border-b">
-                    <span className="font-medium">Monday - Thursday</span>
+                  <div className="flex justify-between items-center py-2 border-b border-gray-700">
+                    <span className="font-medium text-white">Monday - Saturday</span>
                     <div className="text-right">
-                      <div>6:00 AM - 11:00 AM</div>
-                      <div className="text-sm text-gray-600">5:00 PM - 10:00 PM</div>
+                      <div className="text-white">6:00 AM - 11:00 AM</div>
+                      <div className="text-sm text-gray-300">5:00 PM - 10:00 PM</div>
                     </div>
                   </div>
-                  <div className="flex justify-between items-center py-2 border-b">
-                    <span className="font-medium">Friday - Sunday</span>
+                  <div className="flex justify-between items-center py-2 border-b border-gray-700">
+                    <span className="font-medium text-white">Sunday</span>
                     <div className="text-right">
-                      <div>6:00 AM - 11:00 AM</div>
-                      <div className="text-sm text-gray-600">5:00 PM - 10:00 PM</div>
+                      <div className="text-white">6:00 AM - 10:00 AM</div>
                     </div>
                   </div>
                 </div>
-                <div className="mt-6 p-4 bg-red-50 rounded-lg">
+                <div className="mt-6 p-4 bg-red-600/10 border border-red-600/30 rounded-lg">
                   <p className="text-sm text-gray-300">
                     <CheckCircle className="h-4 w-4 inline mr-2 text-red-600" />
                     Please arrive 10 minutes before your scheduled class
