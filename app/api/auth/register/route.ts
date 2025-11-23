@@ -4,6 +4,13 @@ import bcrypt from "bcryptjs"
 
 export async function POST(request: Request) {
   try {
+    if (!prisma) {
+      return NextResponse.json(
+        { error: "Registration is currently unavailable. Please contact support." },
+        { status: 503 }
+      )
+    }
+
     const body = await request.json()
     const { name, email, phone, password } = body
 

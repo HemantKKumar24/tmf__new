@@ -66,7 +66,7 @@ export default function CoachesPage() {
             >
               <Trophy className="h-16 w-16 text-red-600 mx-auto" />
             </motion.div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent font-heading">
               Meet Our Expert Coaches
             </h1>
             <p className="text-xl text-gray-300">

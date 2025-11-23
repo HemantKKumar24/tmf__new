@@ -20,7 +20,7 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">About TEAM MUSCLE FITNESS</h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 font-heading">About TEAM MUSCLE FITNESS</h1>
             <p className="text-xl text-gray-300">
               Your journey to a healthier, stronger you starts here
             </p>
@@ -39,7 +39,7 @@ export default function AboutPage() {
               transition={{ duration: 0.8 }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Our Mission</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white font-elegant">Our Mission</h2>
               <p className="text-lg text-gray-300 leading-relaxed">
                 At TEAM MUSCLE FITNESS, we believe that fitness is not just about physical strength, 
                 but about building confidence, discipline, and a positive mindset. Our mission is to 
@@ -100,7 +100,7 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-red-600">Why Choose Us?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-red-600 font-elegant">Why Choose Us?</h2>
             <p className="text-lg text-gray-300">
               Experience the difference with our comprehensive approach to fitness
             </p>
@@ -180,7 +180,7 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Visit Us</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white font-elegant">Visit Us</h2>
             <p className="text-lg text-gray-300 mb-8">
               Located in the heart of Bowenpally, Hyderabad, we&apos;re easily accessible and 
               offer ample parking facilities.

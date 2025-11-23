@@ -13,10 +13,10 @@ import { Footer } from "@/components/footer"
 
 // Base prices in INR (monthly)
 const basePlans = {
-  basic: { name: "Basic", monthlyINR: 1999, monthlyUSD: 24 },
-  silver: { name: "Silver", monthlyINR: 2999, monthlyUSD: 36 },
-  gold: { name: "Gold", monthlyINR: 4999, monthlyUSD: 60 },
-  platinum: { name: "Platinum", monthlyINR: 7999, monthlyUSD: 96 },
+  basic: { name: "Basic", monthlyINR: 1999, monthlyUSD: 24, description: "Perfect for beginners starting their fitness journey" },
+  silver: { name: "Silver", monthlyINR: 2999, monthlyUSD: 36, description: "Great value with personal training sessions" },
+  gold: { name: "Gold", monthlyINR: 4999, monthlyUSD: 60, description: "Premium experience with unlimited training" },
+  platinum: { name: "Platinum", monthlyINR: 7999, monthlyUSD: 96, description: "Ultimate fitness experience with dedicated trainer" },
 }
 
 // Discounts for quarterly and yearly
@@ -122,7 +122,7 @@ export default function PlansPage() {
             >
               <Zap className="h-16 w-16 text-red-600 mx-auto" />
             </motion.div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent font-heading">
               Choose Your Membership Plan
             </h1>
             <p className="text-xl text-gray-300">

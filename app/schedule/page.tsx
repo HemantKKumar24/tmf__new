@@ -181,7 +181,7 @@ export default function SchedulePage() {
             transition={{ duration: 0.8 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">Class Schedule</h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 font-heading">Class Schedule</h1>
             <p className="text-xl text-gray-300">
               Book your favorite classes and train with expert instructors
             </p>

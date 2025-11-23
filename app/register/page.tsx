@@ -112,7 +112,7 @@ export default function RegisterPage() {
                   style={{ filter: 'brightness(1.15) contrast(1.15)' }}
                 />
               </motion.div>
-              <CardTitle className="text-3xl md:text-4xl font-bold text-white tracking-tight">Create Account</CardTitle>
+              <CardTitle className="text-3xl md:text-4xl font-bold text-white tracking-tight font-heading">Create Account</CardTitle>
               <CardDescription className="text-gray-300 text-lg font-light">
                 Join TEAM MUSCLE FITNESS and start your fitness journey
               </CardDescription>

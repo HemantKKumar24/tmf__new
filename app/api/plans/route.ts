@@ -3,6 +3,9 @@ import { prisma } from "@/lib/prisma"
 
 export async function GET() {
   try {
+    if (!prisma) {
+      return NextResponse.json([], { status: 200 })
+    }
     const plans = await prisma.plan.findMany({
       orderBy: { price: "asc" },
     })

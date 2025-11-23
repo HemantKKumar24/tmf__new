@@ -1,8 +1,19 @@
-import { PrismaClient } from '@prisma/client'
+// Prisma seed - will work once Prisma is set up
+let PrismaClient: any
+try {
+  const prismaModule = require('@prisma/client')
+  PrismaClient = prismaModule.PrismaClient
+} catch (e) {
+  PrismaClient = null
+}
 
-const prisma = new PrismaClient()
+const prisma = PrismaClient ? new PrismaClient() : null
 
 async function main() {
+  if (!prisma) {
+    console.log('Prisma is not set up yet. Skipping seed.')
+    return
+  }
   console.log('Seeding database...')
 
   // Create Plans
@@ -179,6 +190,8 @@ main()
     process.exit(1)
   })
   .finally(async () => {
-    await prisma.$disconnect()
+    if (prisma) {
+      await prisma.$disconnect()
+    }
   })
 

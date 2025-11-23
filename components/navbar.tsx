@@ -57,7 +57,7 @@ export function Navbar() {
                 className="h-14 w-auto object-contain"
                 style={{ filter: 'brightness(1.15) contrast(1.15)' }}
               />
-              <span className={`text-xl font-bold hidden sm:inline tracking-tight font-montserrat transition-colors duration-300 ${
+              <span className={`text-xl font-bold hidden sm:inline tracking-tight font-heading transition-colors duration-300 ${
                 scrolled ? "text-red-600" : "text-white drop-shadow-lg"
               }`}>TEAM MUSCLE FITNESS</span>
             </div>

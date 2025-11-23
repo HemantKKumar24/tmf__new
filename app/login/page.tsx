@@ -1,8 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { signIn } from "next-auth/react"
-import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Mail, Lock, AlertCircle, Eye, EyeOff } from "lucide-react"
@@ -15,36 +13,13 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 
 export default function LoginPage() {
-  const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
-  const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setError("")
-    setLoading(true)
-
-    try {
-      const result = await signIn("credentials", {
-        email,
-        password,
-        redirect: false,
-      })
-
-      if (result?.error) {
-        setError("Invalid email or password")
-      } else {
-        router.push("/dashboard")
-        router.refresh()
-      }
-    } catch (error) {
-      setError("An error occurred. Please try again.")
-    } finally {
-      setLoading(false)
-    }
+    // Login functionality is currently disabled
   }
 
   return (
@@ -85,25 +60,13 @@ export default function LoginPage() {
                   style={{ filter: 'brightness(1.15) contrast(1.15)' }}
                 />
               </motion.div>
-              <CardTitle className="text-3xl md:text-4xl font-bold text-white tracking-tight">Welcome Back</CardTitle>
+              <CardTitle className="text-3xl md:text-4xl font-bold text-white tracking-tight font-heading">Welcome Back</CardTitle>
               <CardDescription className="text-gray-300 text-lg font-light">
                 Sign in to your TEAM MUSCLE FITNESS account
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
-                {error && (
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                  >
-                    <Alert variant="destructive" className="bg-red-600/20 border-red-600">
-                      <AlertCircle className="h-4 w-4" />
-                      <AlertDescription className="text-red-300">{error}</AlertDescription>
-                    </Alert>
-                  </motion.div>
-                )}
-                
                 <div className="space-y-2">
                   <Label htmlFor="email" className="text-white">Email</Label>
                   <div className="relative">

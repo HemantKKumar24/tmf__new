@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, Suspense } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { motion } from "framer-motion"
 import { CreditCard, CheckCircle, AlertCircle, Lock } from "lucide-react"
@@ -19,7 +19,7 @@ const plans: Record<string, { name: string; price: number }> = {
   platinum: { name: "Platinum", price: 7999 },
 }
 
-export default function PaymentPage() {
+function PaymentContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const planId = searchParams.get("plan") || "basic"
@@ -244,6 +244,24 @@ export default function PaymentPage() {
 
       <Footer />
     </div>
+  )
+}
+
+export default function PaymentPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold mb-4">Loading...</h1>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    }>
+      <PaymentContent />
+    </Suspense>
   )
 }
 

@@ -114,6 +114,10 @@ const faqs = [
         question: "How do I contact you?",
         answer: "You can reach us by phone at 077025 53859, email at Tmfitness71@gmail.com, or visit us at our location in Bowenpally, Hyderabad. You can also use the contact form on our website.",
       },
+      {
+        question: "Who developed this website?",
+        answer: "This website was developed by Hemant Dobriyal. For website-related inquiries, you can contact: Email - hemanthdobriyal@gmail.com, Phone - 8686545253",
+      },
     ],
   },
 ]
@@ -132,7 +136,7 @@ export default function FAQPage() {
             transition={{ duration: 0.8 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">Frequently Asked Questions</h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 font-heading">Frequently Asked Questions</h1>
             <p className="text-xl text-gray-300">
               Find answers to common questions about our gym, membership, and services
             </p>

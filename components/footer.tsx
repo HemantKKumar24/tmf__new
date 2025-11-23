@@ -15,7 +15,7 @@ export function Footer() {
                 className="h-12 w-auto object-contain"
                 style={{ filter: 'brightness(1.15) contrast(1.15)' }}
               />
-              <span className="text-xl font-bold text-red-600 tracking-tight">TEAM MUSCLE FITNESS</span>
+              <span className="text-xl font-bold text-red-600 tracking-tight font-heading">TEAM MUSCLE FITNESS</span>
             </div>
             <p className="text-gray-400 text-sm">
               Transform your body, transform your life. Join Hyderabad&apos;s premier fitness destination.

@@ -118,12 +118,29 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-poppins), sans-serif;
+    font-family: var(--font-noto-serif), serif;
   }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-montserrat), sans-serif;
+  h1 {
+    font-family: var(--font-roboto-slab), serif;
     font-weight: 700;
     letter-spacing: -0.02em;
+  }
+  h2, h3, h4, h5, h6 {
+    font-family: var(--font-pt-serif), serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .font-brand {
+    font-family: var(--font-pacifico), cursive;
+  }
+  .font-heading {
+    font-family: var(--font-roboto-slab), serif;
+  }
+  .font-elegant {
+    font-family: var(--font-pt-serif), serif;
+  }
+  .font-body {
+    font-family: var(--font-noto-serif), serif;
   }
 }
 

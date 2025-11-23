@@ -1,18 +1,30 @@
 import type { Metadata } from "next";
-import { Poppins, Montserrat } from "next/font/google";
+import { Pacifico, PT_Serif, Noto_Serif, Roboto_Slab } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 
-const poppins = Poppins({
+const pacifico = Pacifico({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-poppins",
+  weight: ["400"],
+  variable: "--font-pacifico",
 });
 
-const montserrat = Montserrat({
+const ptSerif = PT_Serif({
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "700"],
+  variable: "--font-pt-serif",
+});
+
+const notoSerif = Noto_Serif({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-noto-serif",
+});
+
+const robotoSlab = Roboto_Slab({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-montserrat",
+  variable: "--font-roboto-slab",
 });
 
 export const metadata: Metadata = {
@@ -32,7 +44,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${poppins.variable} ${montserrat.variable} font-sans antialiased`}>
+      <body className={`${pacifico.variable} ${ptSerif.variable} ${notoSerif.variable} ${robotoSlab.variable} font-sans antialiased`}>
         <Providers>
           {children}
         </Providers>

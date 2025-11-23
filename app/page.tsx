@@ -45,7 +45,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 bg-gradient-to-r from-white via-red-50 to-red-400 bg-clip-text text-transparent drop-shadow-2xl tracking-tight leading-tight"
+              className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 bg-gradient-to-r from-white via-red-50 to-red-400 bg-clip-text text-transparent drop-shadow-2xl tracking-tight leading-tight font-brand"
             >
               TEAM MUSCLE FITNESS
             </motion.h1>
@@ -53,7 +53,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="text-xl md:text-2xl lg:text-3xl text-white mb-8 font-semibold drop-shadow-2xl tracking-wide"
+              className="text-xl md:text-2xl lg:text-3xl text-white mb-8 font-semibold drop-shadow-2xl tracking-wide font-elegant"
             >
               Transform Your Body, Transform Your Life
             </motion.p>
@@ -133,7 +133,7 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">Why Choose Us?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white font-heading">Why Choose Us?</h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               Experience the difference with our world-class facilities and expert guidance
             </p>
@@ -234,7 +234,7 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">What Our Members Say</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white font-heading">What Our Members Say</h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               Real stories from real people who transformed their lives with us
             </p>
@@ -372,7 +372,7 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">Our Services</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white font-heading">Our Services</h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               Comprehensive fitness solutions tailored to your needs
             </p>
@@ -424,7 +424,7 @@ export default function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
               Ready to Start Your Fitness Journey?
             </h2>
             <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
