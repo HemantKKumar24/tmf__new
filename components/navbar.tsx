@@ -42,7 +42,7 @@ export function Navbar() {
     <nav 
       className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
         scrolled 
-          ? "bg-background/90 backdrop-blur-md border-b border-gray-800/50" 
+          ? "bg-black/60 backdrop-blur-md border-b border-gray-800/30" 
           : "bg-transparent backdrop-blur-none border-transparent"
       }`}
     >
@@ -57,7 +57,9 @@ export function Navbar() {
                 className="h-14 w-auto object-contain"
                 style={{ filter: 'brightness(1.15) contrast(1.15)' }}
               />
-              <span className="text-xl font-bold text-red-600 hidden sm:inline tracking-tight font-montserrat">TEAM MUSCLE FITNESS</span>
+              <span className={`text-xl font-bold hidden sm:inline tracking-tight font-montserrat transition-colors duration-300 ${
+                scrolled ? "text-red-600" : "text-white drop-shadow-lg"
+              }`}>TEAM MUSCLE FITNESS</span>
             </div>
           </Link>
 
@@ -66,49 +68,63 @@ export function Navbar() {
             <NavigationMenuList>
               <NavigationMenuItem>
                 <Link href="/" legacyBehavior passHref>
-                  <NavigationMenuLink className="px-4 py-2 text-sm font-medium hover:text-red-600 transition-colors">
+                  <NavigationMenuLink className={`px-4 py-2 text-sm font-medium transition-colors ${
+                    scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
+                  }`}>
                     Home
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/plans" legacyBehavior passHref>
-                  <NavigationMenuLink className="px-4 py-2 text-sm font-medium hover:text-red-600 transition-colors">
+                  <NavigationMenuLink className={`px-4 py-2 text-sm font-medium transition-colors ${
+                    scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
+                  }`}>
                     Plans
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/schedule" legacyBehavior passHref>
-                  <NavigationMenuLink className="px-4 py-2 text-sm font-medium hover:text-red-600 transition-colors">
+                  <NavigationMenuLink className={`px-4 py-2 text-sm font-medium transition-colors ${
+                    scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
+                  }`}>
                     Schedule
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/coaches" legacyBehavior passHref>
-                  <NavigationMenuLink className="px-4 py-2 text-sm font-medium hover:text-red-600 transition-colors">
+                  <NavigationMenuLink className={`px-4 py-2 text-sm font-medium transition-colors ${
+                    scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
+                  }`}>
                     Coaches
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/about" legacyBehavior passHref>
-                  <NavigationMenuLink className="px-4 py-2 text-sm font-medium hover:text-red-600 transition-colors">
+                  <NavigationMenuLink className={`px-4 py-2 text-sm font-medium transition-colors ${
+                    scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
+                  }`}>
                     About
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/contact" legacyBehavior passHref>
-                  <NavigationMenuLink className="px-4 py-2 text-sm font-medium hover:text-red-600 transition-colors">
+                  <NavigationMenuLink className={`px-4 py-2 text-sm font-medium transition-colors ${
+                    scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
+                  }`}>
                     Contact
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/faq" legacyBehavior passHref>
-                  <NavigationMenuLink className="px-4 py-2 text-sm font-medium hover:text-red-600 transition-colors">
+                  <NavigationMenuLink className={`px-4 py-2 text-sm font-medium transition-colors ${
+                    scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
+                  }`}>
                     FAQ
                   </NavigationMenuLink>
                 </Link>
@@ -173,10 +189,10 @@ export function Navbar() {
               </DropdownMenu>
             ) : (
               <>
-                <Button asChild variant="ghost">
+                <Button asChild variant="ghost" className={scrolled ? "" : "text-white hover:text-white/80 hover:bg-white/10"}>
                   <Link href="/login">Login</Link>
                 </Button>
-                <Button asChild className="bg-red-600 hover:bg-red-700">
+                <Button asChild className={`transition-all ${scrolled ? "bg-red-600 hover:bg-red-700" : "bg-red-600/90 hover:bg-red-700/90 backdrop-blur-sm border border-white/20"}`}>
                   <Link href="/register">Register</Link>
                 </Button>
               </>
@@ -186,7 +202,7 @@ export function Navbar() {
           {/* Mobile Menu Button */}
           <Button
             variant="ghost"
-            className="md:hidden"
+            className={`md:hidden transition-colors ${scrolled ? "" : "text-white hover:text-white/80 hover:bg-white/10"}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
