@@ -2,11 +2,12 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { ArrowRight, Dumbbell, Users, Award, Clock, CheckCircle } from "lucide-react"
+import { ArrowRight, Dumbbell, Users, Award, Clock, CheckCircle, Activity, Zap, Target, HeartPulse, Flame, Shield } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { VideoBackground } from "@/components/video-background"
 
 export default function HomePage() {
   return (
@@ -16,19 +17,7 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center text-white overflow-hidden">
         {/* Video Background */}
-        <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover opacity-40"
-          >
-            <source src="/gym-video.mp4" type="video/mp4" />
-            <source src="https://videos.pexels.com/video-files/4753995/4753995-hd_1920_1080_25fps.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-red-950/60 to-black/80"></div>
-        </div>
+        <VideoBackground />
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10 [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
@@ -129,25 +118,34 @@ export default function HomePage() {
                 title: "Proven Results",
                 description: "Join thousands of members who have transformed their lives with us",
               },
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-              >
-                <Card className="h-full hover:shadow-xl transition-shadow border-2 hover:border-red-600">
-                  <CardContent className="p-8 text-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 mb-4">
-                      <feature.icon className="h-8 w-8 text-red-600" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                    <p className="text-gray-300">{feature.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+            ].map((feature, index) => {
+              const IconComponent = feature.icon
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                  whileHover={{ y: -10, scale: 1.05 }}
+                  className="cursor-pointer"
+                >
+                  <Card className="h-full hover:shadow-2xl hover:shadow-red-600/50 transition-all border-2 border-red-600/30 hover:border-red-600 bg-gradient-to-br from-gray-900 to-black">
+                    <CardContent className="p-8 text-center">
+                      <motion.div
+                        whileHover={{ rotate: 360, scale: 1.2 }}
+                        transition={{ duration: 0.5 }}
+                        className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-red-600/20 mb-4 group-hover:bg-red-600/30 transition-colors"
+                      >
+                        <IconComponent className="h-10 w-10 text-red-600" />
+                      </motion.div>
+                      <h3 className="text-xl font-semibold mb-3 text-white">{feature.title}</h3>
+                      <p className="text-gray-300">{feature.description}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>

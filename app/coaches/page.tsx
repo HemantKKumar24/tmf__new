@@ -1,7 +1,11 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Award, Users, Globe, CheckCircle, Star, Trophy, Target, Heart, Dumbbell, TrendingUp } from "lucide-react"
+import { 
+  Award, Users, Globe, CheckCircle, Star, Trophy, Target, Heart, Dumbbell, TrendingUp,
+  Activity, Zap, Flame, Apple, Pill, Stethoscope, Brain, Shield, Sparkles, Dumbbell as DumbbellIcon,
+  HeartPulse, Syringe, Scale, Waves, Bike, Timer, UtensilsCrossed, Home
+} from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Navbar } from "@/components/navbar"
@@ -16,20 +20,20 @@ const certifications = [
 ]
 
 const specializations = [
-  "Clinical Nutrition",
-  "Crossfit",
-  "HIIT",
-  "Home Workouts",
-  "Pain Management",
-  "Physiotherapy",
-  "Powerlifting",
-  "Sports Nutrition",
-  "Sports Specific Training",
-  "Strength Training",
-  "Weightlifting",
-  "Wellbeing",
-  "Women Health Specialization",
-  "Bodybuilding Transformation",
+  { name: "Clinical Nutrition", icon: Apple },
+  { name: "Crossfit", icon: Flame },
+  { name: "HIIT", icon: Zap },
+  { name: "Home Workouts", icon: Home },
+  { name: "Pain Management", icon: Pill },
+  { name: "Physiotherapy", icon: Stethoscope },
+  { name: "Powerlifting", icon: DumbbellIcon },
+  { name: "Sports Nutrition", icon: UtensilsCrossed },
+  { name: "Sports Specific Training", icon: Target },
+  { name: "Strength Training", icon: Activity },
+  { name: "Weightlifting", icon: DumbbellIcon },
+  { name: "Wellbeing", icon: HeartPulse },
+  { name: "Women Health Specialization", icon: Heart },
+  { name: "Bodybuilding Transformation", icon: Trophy },
 ]
 
 const stats = [
@@ -228,23 +232,33 @@ export default function CoachesPage() {
               Specializations
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {specializations.map((spec, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <Card className="bg-gradient-to-br from-gray-900 to-black border-red-600/30 hover:border-red-600 transition-all cursor-pointer">
-                    <CardContent className="p-4 text-center">
-                      <CheckCircle className="h-5 w-5 text-red-600 mx-auto mb-2" />
-                      <span className="text-sm text-gray-300">{spec}</span>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+              {specializations.map((spec, index) => {
+                const IconComponent = spec.icon
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+                    whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    whileHover={{ scale: 1.1, rotate: 5, y: -5 }}
+                    className="cursor-pointer"
+                  >
+                    <Card className="bg-gradient-to-br from-gray-900 to-black border-red-600/30 hover:border-red-600 transition-all group">
+                      <CardContent className="p-6 text-center">
+                        <motion.div
+                          whileHover={{ rotate: 360, scale: 1.2 }}
+                          transition={{ duration: 0.5 }}
+                          className="mb-3"
+                        >
+                          <IconComponent className="h-8 w-8 text-red-600 mx-auto group-hover:text-red-400 transition-colors" />
+                        </motion.div>
+                        <span className="text-sm text-gray-300 group-hover:text-white transition-colors font-medium">{spec.name}</span>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                )
+              })}
             </div>
           </motion.div>
         </div>
@@ -267,22 +281,45 @@ export default function CoachesPage() {
               Specialized expertise in strength, nutrition, and injury management for:
             </p>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              {["Thyroid", "Diabetic", "PCOD/PCOS", "Hormonal Imbalance"].map((condition, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <Card className="bg-black border-2 border-red-600/50 hover:border-red-600 transition-colors">
-                    <CardContent className="p-6">
-                      <Heart className="h-8 w-8 text-red-600 mx-auto mb-3" />
-                      <h3 className="font-semibold text-white">{condition}</h3>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+              {[
+                { name: "Thyroid", icon: Activity, color: "text-red-600" },
+                { name: "Diabetic", icon: HeartPulse, color: "text-red-500" },
+                { name: "PCOD/PCOS", icon: Heart, color: "text-red-400" },
+                { name: "Hormonal Imbalance", icon: Brain, color: "text-red-600" },
+              ].map((condition, index) => {
+                const IconComponent = condition.icon
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    className="cursor-pointer"
+                  >
+                    <Card className="bg-black border-2 border-red-600/50 hover:border-red-600 transition-all group">
+                      <CardContent className="p-6 text-center">
+                        <motion.div
+                          animate={{ 
+                            scale: [1, 1.2, 1],
+                            rotate: [0, 10, -10, 0]
+                          }}
+                          transition={{ 
+                            duration: 2,
+                            repeat: Infinity,
+                            repeatDelay: 3
+                          }}
+                          className="mb-4"
+                        >
+                          <IconComponent className={`h-12 w-12 ${condition.color} mx-auto group-hover:scale-110 transition-transform`} />
+                        </motion.div>
+                        <h3 className="font-semibold text-white group-hover:text-red-400 transition-colors">{condition.name}</h3>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                )
+              })}
             </div>
           </motion.div>
         </div>

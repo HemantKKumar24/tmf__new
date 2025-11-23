@@ -91,7 +91,7 @@ export default function AboutPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-900">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -138,25 +138,34 @@ export default function AboutPage() {
                 title: "Personalized Approach",
                 description: "We understand that everyone&apos;s fitness journey is unique. Our trainers create customized plans tailored to your goals and needs.",
               },
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Card className="h-full hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6 text-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 mb-4">
-                      <feature.icon className="h-8 w-8 text-red-600" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                    <p className="text-gray-700">{feature.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+            ].map((feature, index) => {
+              const IconComponent = feature.icon
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -10, scale: 1.05 }}
+                  className="cursor-pointer"
+                >
+                  <Card className="h-full hover:shadow-2xl hover:shadow-red-600/50 transition-all border-2 border-red-600/30 hover:border-red-600 bg-gradient-to-br from-gray-900 to-black">
+                    <CardContent className="p-6 text-center">
+                      <motion.div
+                        whileHover={{ rotate: 360, scale: 1.2 }}
+                        transition={{ duration: 0.5 }}
+                        className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-600/20 mb-4 group-hover:bg-red-600/30 transition-colors"
+                      >
+                        <IconComponent className="h-8 w-8 text-red-600" />
+                      </motion.div>
+                      <h3 className="text-xl font-semibold mb-3 text-white">{feature.title}</h3>
+                      <p className="text-gray-300">{feature.description}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
