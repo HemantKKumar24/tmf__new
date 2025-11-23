@@ -18,6 +18,8 @@ export default function HomePage() {
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center text-white overflow-hidden pb-20">
+        {/* Gradient fade to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent z-10"></div>
         {/* Video Background */}
         <VideoBackground />
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-5 [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] z-0"></div>
@@ -114,6 +116,8 @@ export default function HomePage() {
 
       {/* Features Section */}
       <section className="relative py-20 bg-gray-900 overflow-hidden">
+        {/* Gradient fade from previous section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-gray-900 to-transparent z-10"></div>
         {/* Background Image */}
         <div 
           className="absolute inset-0 opacity-15"
@@ -125,6 +129,8 @@ export default function HomePage() {
           }}
         />
         <div className="absolute inset-0 bg-black/70"></div>
+        {/* Gradient fade to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-red-600 to-transparent z-10"></div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -189,7 +195,9 @@ export default function HomePage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-gradient-to-r from-red-600 to-red-700 text-white">
+      <section className="relative py-20 bg-gradient-to-r from-red-600 to-red-700 text-white overflow-hidden">
+        {/* Gradient fade from previous section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-red-600 to-transparent z-10"></div>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -211,10 +219,14 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+        {/* Gradient fade to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10"></div>
       </section>
 
       {/* Testimonials Section */}
       <section className="relative py-20 bg-black overflow-hidden">
+        {/* Gradient fade from previous section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent z-10"></div>
         {/* Background Image */}
         <div 
           className="absolute inset-0 opacity-15"
@@ -349,10 +361,14 @@ export default function HomePage() {
           </div>
 
         </div>
+        {/* Gradient fade to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent z-10"></div>
       </section>
 
       {/* Services/Gallery Section */}
       <section className="relative py-20 bg-gray-900 overflow-hidden">
+        {/* Gradient fade from previous section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-gray-900 to-transparent z-10"></div>
         {/* Background Image */}
         <div 
           className="absolute inset-0 opacity-10"
@@ -413,10 +429,14 @@ export default function HomePage() {
             })}
           </div>
         </div>
+        {/* Gradient fade to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10"></div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-black text-white">
+      <section className="relative py-20 bg-black text-white overflow-hidden">
+        {/* Gradient fade from previous section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent z-10"></div>
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

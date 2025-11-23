@@ -50,6 +50,8 @@ export default function CoachesPage() {
       
       {/* Header */}
       <section className="relative bg-gradient-to-br from-black via-red-950 to-black py-20 overflow-hidden">
+        {/* Gradient fade to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10"></div>
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10"></div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
@@ -78,6 +80,8 @@ export default function CoachesPage() {
 
       {/* Main Coach - Rahemath Khan */}
       <section className="relative py-20 bg-black overflow-hidden">
+        {/* Gradient fade from previous section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent z-10"></div>
         {/* Background Image */}
         <div 
           className="absolute inset-0 opacity-10"
@@ -89,6 +93,8 @@ export default function CoachesPage() {
           }}
         />
         <div className="absolute inset-0 bg-black/80"></div>
+        {/* Gradient fade to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent z-10"></div>
         
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
@@ -231,8 +237,12 @@ export default function CoachesPage() {
       </section>
 
       {/* Certifications */}
-      <section className="py-20 bg-gray-900">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 bg-gray-900 overflow-hidden">
+        {/* Gradient fade from previous section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-gray-900 to-transparent z-10"></div>
+        {/* Gradient fade to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10"></div>
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -266,8 +276,12 @@ export default function CoachesPage() {
       </section>
 
       {/* Specializations */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 bg-black overflow-hidden">
+        {/* Gradient fade from previous section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent z-10"></div>
+        {/* Gradient fade to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent z-10"></div>
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -312,8 +326,12 @@ export default function CoachesPage() {
       </section>
 
       {/* Special Populations */}
-      <section className="py-20 bg-gray-900">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 bg-gray-900 overflow-hidden">
+        {/* Gradient fade from previous section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-gray-900 to-transparent z-10"></div>
+        {/* Gradient fade to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10"></div>
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -373,8 +391,12 @@ export default function CoachesPage() {
       </section>
 
       {/* Second Coach - Surendar */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 bg-black overflow-hidden">
+        {/* Gradient fade from previous section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent z-10"></div>
+        {/* Gradient fade to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-red-950 to-transparent z-10"></div>
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -401,8 +423,10 @@ export default function CoachesPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-red-950 to-black">
-        <div className="container mx-auto px-4 text-center">
+      <section className="relative py-20 bg-gradient-to-br from-red-950 to-black overflow-hidden">
+        {/* Gradient fade from previous section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-red-950 to-transparent z-10"></div>
+        <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

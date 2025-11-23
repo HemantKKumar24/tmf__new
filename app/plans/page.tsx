@@ -106,6 +106,8 @@ export default function PlansPage() {
       
       {/* Header */}
       <section className="relative bg-gradient-to-br from-black via-red-950 to-black py-20 overflow-hidden">
+        {/* Gradient fade to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent z-10"></div>
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10"></div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
@@ -133,8 +135,12 @@ export default function PlansPage() {
       </section>
 
       {/* Currency and Billing Period Selector */}
-      <section className="py-8 bg-gray-900 border-b border-red-600/30">
-        <div className="container mx-auto px-4">
+      <section className="relative py-8 bg-gray-900 border-b border-red-600/30 overflow-hidden">
+        {/* Gradient fade from previous section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-gray-900 to-transparent z-10"></div>
+        {/* Gradient fade to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10"></div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row gap-6 items-center justify-center">
               {/* Currency Toggle */}
@@ -177,8 +183,12 @@ export default function PlansPage() {
       </section>
 
       {/* Plans Grid */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 bg-black overflow-hidden">
+        {/* Gradient fade from previous section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent z-10"></div>
+        {/* Gradient fade to next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent z-10"></div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {plans.map((plan, index) => {
               const price = calculatePrice(plan.id as keyof typeof basePlans)
@@ -269,8 +279,10 @@ export default function PlansPage() {
       </section>
 
       {/* Additional Info */}
-      <section className="py-20 bg-gray-900">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 bg-gray-900 overflow-hidden">
+        {/* Gradient fade from previous section */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-gray-900 to-transparent z-10"></div>
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
