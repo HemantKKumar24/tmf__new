@@ -50,7 +50,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
@@ -60,25 +60,26 @@ export default function ContactPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <Card>
+              <Card className="bg-gray-800 border-gray-700">
                 <CardHeader>
-                  <CardTitle className="text-2xl">Send us a Message</CardTitle>
+                  <CardTitle className="text-2xl text-white">Send us a Message</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="name">Name *</Label>
+                        <Label htmlFor="name" className="text-white">Name *</Label>
                         <Input
                           id="name"
                           required
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           placeholder="Your name"
+                          className="bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
                         />
                       </div>
                       <div>
-                        <Label htmlFor="email">Email *</Label>
+                        <Label htmlFor="email" className="text-white">Email *</Label>
                         <Input
                           id="email"
                           type="email"
@@ -86,31 +87,34 @@ export default function ContactPage() {
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           placeholder="your.email@example.com"
+                          className="bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
                         />
                       </div>
                     </div>
                     <div>
-                      <Label htmlFor="phone">Phone</Label>
+                      <Label htmlFor="phone" className="text-white">Phone</Label>
                       <Input
                         id="phone"
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="+91 1234567890"
+                        className="bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="subject">Subject *</Label>
+                      <Label htmlFor="subject" className="text-white">Subject *</Label>
                       <Input
                         id="subject"
                         required
                         value={formData.subject}
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                         placeholder="What is this regarding?"
+                        className="bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="message">Message *</Label>
+                      <Label htmlFor="message" className="text-white">Message *</Label>
                       <Textarea
                         id="message"
                         required
@@ -118,6 +122,7 @@ export default function ContactPage() {
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         placeholder="Tell us more about your inquiry..."
+                        className="bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
                       />
                     </div>
                     <Button type="submit" className="w-full bg-red-600 hover:bg-red-700">
@@ -137,9 +142,9 @@ export default function ContactPage() {
               transition={{ duration: 0.8 }}
               className="space-y-6"
             >
-              <Card>
+              <Card className="bg-gray-800 border-gray-700">
                 <CardHeader>
-                  <CardTitle className="text-2xl">Contact Information</CardTitle>
+                  <CardTitle className="text-2xl text-white">Contact Information</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="flex items-start space-x-4">
@@ -149,24 +154,31 @@ export default function ContactPage() {
                       </div>
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-1">Address</h3>
-                      <p className="text-gray-300">
-                        Vegetable Market, Opposite Al Ridaan Hotel,<br />
-                        Anjaiah Nagar, Bowenpally,<br />
-                        Hyderabad, Secunderabad,<br />
-                        Telangana 500009
-                      </p>
+                      <h3 className="font-semibold mb-1 text-white">Address</h3>
+                      <a 
+                        href="https://maps.app.goo.gl/7U11gSJCbmX8zScS9" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-gray-300 hover:text-red-600 transition-colors cursor-pointer"
+                      >
+                        <p>
+                          Vegetable Market, Opposite Al Ridaan Hotel,<br />
+                          Anjaiah Nagar, Bowenpally,<br />
+                          Hyderabad, Secunderabad,<br />
+                          Telangana 500009
+                        </p>
+                      </a>
                     </div>
                   </div>
 
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-red-600/20 flex items-center justify-center">
                         <Phone className="h-6 w-6 text-red-600" />
                       </div>
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-1">Phone</h3>
+                      <h3 className="font-semibold mb-1 text-white">Phone</h3>
                       <a href="tel:07702553859" className="text-red-600 hover:underline">
                         077025 53859
                       </a>
@@ -175,12 +187,12 @@ export default function ContactPage() {
 
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-red-600/20 flex items-center justify-center">
                         <Mail className="h-6 w-6 text-red-600" />
                       </div>
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-1">Email</h3>
+                      <h3 className="font-semibold mb-1 text-white">Email</h3>
                       <a href="mailto:Tmfitness71@gmail.com" className="text-red-600 hover:underline">
                         Tmfitness71@gmail.com
                       </a>
@@ -189,12 +201,12 @@ export default function ContactPage() {
 
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-red-600/20 flex items-center justify-center">
                         <Clock className="h-6 w-6 text-red-600" />
                       </div>
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-1">Working Hours</h3>
+                      <h3 className="font-semibold mb-1 text-white">Working Hours</h3>
                       <div className="text-gray-300 space-y-1">
                         <p>Monday - Saturday: 6:00 AM - 11:00 AM, 5:00 PM - 10:00 PM</p>
                         <p>Sunday: 6:00 AM - 10:00 AM</p>
@@ -204,10 +216,10 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-red-50 border-red-200">
+              <Card className="bg-red-600/10 border-red-600/30">
                 <CardContent className="p-6">
-                  <h3 className="font-semibold mb-2 text-red-900">Walk-in Welcome!</h3>
-                  <p className="text-red-800 text-sm">
+                  <h3 className="font-semibold mb-2 text-red-400">Walk-in Welcome!</h3>
+                  <p className="text-gray-300 text-sm">
                     Feel free to visit us during our working hours. Our team will be happy to give you a tour 
                     of our facilities and answer any questions you may have.
                   </p>
@@ -252,6 +264,33 @@ export default function ContactPage() {
               </Card>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Map Section */}
+      <section className="py-20 bg-black">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-6xl mx-auto"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-white font-heading">Find Us on Map</h2>
+            <div className="rounded-lg overflow-hidden shadow-2xl">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1902.8982373302417!2d78.49260522218943!3d17.469452748852532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9bc8b6cb8c65%3A0x334b77541b36e0c7!2sTEAM%20MUSCLE%20FITNESS%20GYM%20-%20best%20gym%20in%20Bowenpally!5e0!3m2!1sen!2sin!4v1763881111101!5m2!1sen!2sin" 
+                width="100%" 
+                height="450" 
+                style={{ border: 0 }} 
+                allowFullScreen 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full"
+              ></iframe>
+            </div>
+          </motion.div>
         </div>
       </section>
 

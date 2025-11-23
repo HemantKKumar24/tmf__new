@@ -96,12 +96,19 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-gray-400">
               <li className="flex items-start space-x-2">
                 <MapPin className="h-5 w-5 text-red-600 mt-0.5 flex-shrink-0" />
-                <span>
-                  Vegetable Market, Opposite Al Ridaan Hotel,<br />
-                  Anjaiah Nagar, Bowenpally,<br />
-                  Hyderabad, Secunderabad,<br />
-                  Telangana 500009
-                </span>
+                <a 
+                  href="https://maps.app.goo.gl/7U11gSJCbmX8zScS9" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-red-600 transition-colors cursor-pointer"
+                >
+                  <span>
+                    Vegetable Market, Opposite Al Ridaan Hotel,<br />
+                    Anjaiah Nagar, Bowenpally,<br />
+                    Hyderabad, Secunderabad,<br />
+                    Telangana 500009
+                  </span>
+                </a>
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="h-5 w-5 text-red-600 flex-shrink-0" />

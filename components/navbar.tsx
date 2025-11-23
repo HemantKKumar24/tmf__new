@@ -67,7 +67,7 @@ export function Navbar() {
           <NavigationMenu className="hidden md:flex">
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuLink asChild>
+                <NavigationMenuLink asChild className="hover:bg-transparent focus:bg-transparent data-[active=true]:bg-transparent">
                   <Link href="/" className={`px-4 py-2 text-sm font-medium transition-colors ${
                     scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
                   }`}>
@@ -76,7 +76,7 @@ export function Navbar() {
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuLink asChild>
+                <NavigationMenuLink asChild className="hover:bg-transparent focus:bg-transparent data-[active=true]:bg-transparent">
                   <Link href="/plans" className={`px-4 py-2 text-sm font-medium transition-colors ${
                     scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
                   }`}>
@@ -85,7 +85,7 @@ export function Navbar() {
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuLink asChild>
+                <NavigationMenuLink asChild className="hover:bg-transparent focus:bg-transparent data-[active=true]:bg-transparent">
                   <Link href="/schedule" className={`px-4 py-2 text-sm font-medium transition-colors ${
                     scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
                   }`}>
@@ -94,7 +94,7 @@ export function Navbar() {
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuLink asChild>
+                <NavigationMenuLink asChild className="hover:bg-transparent focus:bg-transparent data-[active=true]:bg-transparent">
                   <Link href="/coaches" className={`px-4 py-2 text-sm font-medium transition-colors ${
                     scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
                   }`}>
@@ -103,7 +103,7 @@ export function Navbar() {
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuLink asChild>
+                <NavigationMenuLink asChild className="hover:bg-transparent focus:bg-transparent data-[active=true]:bg-transparent">
                   <Link href="/about" className={`px-4 py-2 text-sm font-medium transition-colors ${
                     scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
                   }`}>
@@ -112,7 +112,7 @@ export function Navbar() {
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuLink asChild>
+                <NavigationMenuLink asChild className="hover:bg-transparent focus:bg-transparent data-[active=true]:bg-transparent">
                   <Link href="/contact" className={`px-4 py-2 text-sm font-medium transition-colors ${
                     scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
                   }`}>
@@ -121,7 +121,7 @@ export function Navbar() {
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuLink asChild>
+                <NavigationMenuLink asChild className="hover:bg-transparent focus:bg-transparent data-[active=true]:bg-transparent">
                   <Link href="/faq" className={`px-4 py-2 text-sm font-medium transition-colors ${
                     scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
                   }`}>

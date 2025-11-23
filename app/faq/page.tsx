@@ -145,7 +145,7 @@ export default function FAQPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-900">
         <div className="container mx-auto px-4 max-w-4xl">
           {faqs.map((category, categoryIndex) => (
             <motion.div

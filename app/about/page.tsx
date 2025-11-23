@@ -188,12 +188,19 @@ export default function AboutPage() {
             <Card className="bg-gray-900 border-red-600/30">
               <CardContent className="p-8">
                 <p className="text-lg font-semibold mb-2 text-white">TEAM MUSCLE FITNESS GYM</p>
-                <p className="text-gray-300 mb-4">
-                  Vegetable Market, Opposite Al Ridaan Hotel,<br />
-                  Anjaiah Nagar, Bowenpally,<br />
-                  Hyderabad, Secunderabad,<br />
-                  Telangana 500009
-                </p>
+                <a 
+                  href="https://maps.app.goo.gl/7U11gSJCbmX8zScS9" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-red-600 transition-colors cursor-pointer mb-4 block"
+                >
+                  <p>
+                    Vegetable Market, Opposite Al Ridaan Hotel,<br />
+                    Anjaiah Nagar, Bowenpally,<br />
+                    Hyderabad, Secunderabad,<br />
+                    Telangana 500009
+                  </p>
+                </a>
                 <p className="text-gray-300">
                   Phone: <a href="tel:07702553859" className="text-red-600 hover:underline">077025 53859</a>
                 </p>

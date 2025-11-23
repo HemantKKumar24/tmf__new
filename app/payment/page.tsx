@@ -74,10 +74,10 @@ function PaymentContent() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-black text-white">
       <Navbar />
       
-      <section className="flex-1 bg-gradient-to-br from-gray-50 to-gray-100 py-20">
+      <section className="flex-1 bg-gradient-to-br from-black via-gray-900 to-black py-20">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -86,25 +86,25 @@ function PaymentContent() {
             className="max-w-4xl mx-auto"
           >
             <div className="text-center mb-8">
-              <h1 className="text-4xl font-bold mb-2">Complete Your Payment</h1>
-              <p className="text-gray-600">Secure payment for your membership</p>
+              <h1 className="text-4xl font-bold mb-2 text-white">Complete Your Payment</h1>
+              <p className="text-gray-300">Secure payment for your membership</p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Payment Form */}
               <div className="lg:col-span-2">
-                <Card>
+                <Card className="bg-gray-800 border-gray-700">
                   <CardHeader>
-                    <CardTitle className="flex items-center">
+                    <CardTitle className="flex items-center text-white">
                       <CreditCard className="h-5 w-5 mr-2" />
                       Payment Details
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     {success ? (
-                      <Alert className="bg-green-50 border-green-200">
-                        <CheckCircle className="h-4 w-4 text-green-600" />
-                        <AlertDescription className="text-green-800">
+                      <Alert className="bg-green-600/20 border-green-600/50">
+                        <CheckCircle className="h-4 w-4 text-green-400" />
+                        <AlertDescription className="text-green-300">
                           Payment successful! Redirecting to dashboard...
                         </AlertDescription>
                       </Alert>
@@ -118,18 +118,19 @@ function PaymentContent() {
                         )}
 
                         <div className="space-y-2">
-                          <Label htmlFor="cardName">Cardholder Name</Label>
+                          <Label htmlFor="cardName" className="text-white">Cardholder Name</Label>
                           <Input
                             id="cardName"
                             placeholder="John Doe"
                             value={formData.cardName}
                             onChange={(e) => setFormData({ ...formData, cardName: e.target.value })}
                             required
+                            className="bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
                           />
                         </div>
 
                         <div className="space-y-2">
-                          <Label htmlFor="cardNumber">Card Number</Label>
+                          <Label htmlFor="cardNumber" className="text-white">Card Number</Label>
                           <Input
                             id="cardNumber"
                             placeholder="1234 5678 9012 3456"
@@ -142,12 +143,13 @@ function PaymentContent() {
                             }
                             maxLength={19}
                             required
+                            className="bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
                           />
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
                           <div className="space-y-2">
-                            <Label htmlFor="expiryDate">Expiry Date</Label>
+                            <Label htmlFor="expiryDate" className="text-white">Expiry Date</Label>
                             <Input
                               id="expiryDate"
                               placeholder="MM/YY"
@@ -160,10 +162,11 @@ function PaymentContent() {
                               }
                               maxLength={5}
                               required
+                              className="bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
                             />
                           </div>
                           <div className="space-y-2">
-                            <Label htmlFor="cvv">CVV</Label>
+                            <Label htmlFor="cvv" className="text-white">CVV</Label>
                             <Input
                               id="cvv"
                               placeholder="123"
@@ -177,11 +180,12 @@ function PaymentContent() {
                               }
                               maxLength={3}
                               required
+                              className="bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
                             />
                           </div>
                         </div>
 
-                        <div className="flex items-center space-x-2 text-sm text-gray-600">
+                        <div className="flex items-center space-x-2 text-sm text-gray-300">
                           <Lock className="h-4 w-4" />
                           <span>Your payment information is secure and encrypted</span>
                         </div>
@@ -201,33 +205,33 @@ function PaymentContent() {
 
               {/* Order Summary */}
               <div>
-                <Card className="sticky top-24">
+                <Card className="sticky top-24 bg-gray-800 border-gray-700">
                   <CardHeader>
-                    <CardTitle>Order Summary</CardTitle>
+                    <CardTitle className="text-white">Order Summary</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div>
                       <div className="flex justify-between mb-2">
-                        <span className="text-gray-600">Plan</span>
-                        <span className="font-semibold">{selectedPlan.name}</span>
+                        <span className="text-gray-300">Plan</span>
+                        <span className="font-semibold text-white">{selectedPlan.name}</span>
                       </div>
                       <div className="flex justify-between mb-2">
-                        <span className="text-gray-600">Duration</span>
-                        <span className="font-semibold">1 Month</span>
+                        <span className="text-gray-300">Duration</span>
+                        <span className="font-semibold text-white">1 Month</span>
                       </div>
                       <div className="flex justify-between mb-2">
-                        <span className="text-gray-600">Subtotal</span>
-                        <span className="font-semibold">₹{selectedPlan.price.toLocaleString()}</span>
+                        <span className="text-gray-300">Subtotal</span>
+                        <span className="font-semibold text-white">₹{selectedPlan.price.toLocaleString()}</span>
                       </div>
                       <div className="flex justify-between mb-2">
-                        <span className="text-gray-600">GST (18%)</span>
-                        <span className="font-semibold">
+                        <span className="text-gray-300">GST (18%)</span>
+                        <span className="font-semibold text-white">
                           ₹{Math.round(selectedPlan.price * 0.18).toLocaleString()}
                         </span>
                       </div>
-                      <div className="border-t pt-2 mt-4">
+                      <div className="border-t border-gray-700 pt-2 mt-4">
                         <div className="flex justify-between">
-                          <span className="text-lg font-bold">Total</span>
+                          <span className="text-lg font-bold text-white">Total</span>
                           <span className="text-lg font-bold text-red-600">
                             ₹{Math.round(selectedPlan.price * 1.18).toLocaleString()}
                           </span>
@@ -250,11 +254,11 @@ function PaymentContent() {
 export default function PaymentPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-black text-white">
         <Navbar />
         <div className="flex-1 flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold mb-4">Loading...</h1>
+            <h1 className="text-2xl font-bold mb-4 text-white">Loading...</h1>
           </div>
         </div>
         <Footer />
