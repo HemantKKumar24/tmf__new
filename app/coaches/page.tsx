@@ -1,0 +1,355 @@
+"use client"
+
+import { motion } from "framer-motion"
+import { Award, Users, Globe, CheckCircle, Star, Trophy, Target, Heart, Dumbbell, TrendingUp } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Navbar } from "@/components/navbar"
+import { Footer } from "@/components/footer"
+
+const certifications = [
+  "ACSM (American College of Sports Medicine)",
+  "NSCA (National Strength and Conditioning Association)",
+  "ACE (American Council on Exercise)",
+  "Master Personal Trainer",
+  "Diploma in Bodybuilding Specialist from London University",
+]
+
+const specializations = [
+  "Clinical Nutrition",
+  "Crossfit",
+  "HIIT",
+  "Home Workouts",
+  "Pain Management",
+  "Physiotherapy",
+  "Powerlifting",
+  "Sports Nutrition",
+  "Sports Specific Training",
+  "Strength Training",
+  "Weightlifting",
+  "Wellbeing",
+  "Women Health Specialization",
+  "Bodybuilding Transformation",
+]
+
+const stats = [
+  { icon: Users, label: "Years Experience", value: "22+" },
+  { icon: Trophy, label: "Clients Coached", value: "1000+" },
+  { icon: Globe, label: "Languages", value: "4" },
+  { icon: Award, label: "Certifications", value: "5+" },
+]
+
+export default function CoachesPage() {
+  return (
+    <div className="min-h-screen flex flex-col bg-black text-white">
+      <Navbar />
+      
+      {/* Header */}
+      <section className="relative bg-gradient-to-br from-black via-red-950 to-black py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-3xl mx-auto"
+          >
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: "spring" }}
+              className="inline-block mb-6"
+            >
+              <Trophy className="h-16 w-16 text-red-600 mx-auto" />
+            </motion.div>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent">
+              Meet Our Expert Coaches
+            </h1>
+            <p className="text-xl text-gray-300">
+              World-class trainers dedicated to your transformation
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Main Coach - Rahemath Khan */}
+      <section className="py-20 bg-black">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-6xl mx-auto"
+          >
+            <Card className="bg-gradient-to-br from-gray-900 to-black border-2 border-red-600/50 overflow-hidden">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Left Side - Image/Info */}
+                <div className="p-8 lg:p-12">
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <Badge className="mb-4 bg-red-600 text-white">Founder & Master Trainer</Badge>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-red-600">
+                      Mohammed Rahemathkhan
+                    </h2>
+                    <p className="text-xl text-gray-300 mb-6">
+                      Master Personal Trainer | Bodybuilding Transformation Specialist
+                    </p>
+                    
+                    {/* Stats */}
+                    <div className="grid grid-cols-2 gap-4 mb-8">
+                      {stats.map((stat, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: index * 0.1 }}
+                          className="bg-gray-900 p-4 rounded-lg border border-red-600/30"
+                        >
+                          <stat.icon className="h-6 w-6 text-red-600 mb-2" />
+                          <div className="text-2xl font-bold text-white">{stat.value}</div>
+                          <div className="text-sm text-gray-400">{stat.label}</div>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    {/* Languages */}
+                    <div className="mb-6">
+                      <h3 className="text-lg font-semibold mb-3 text-red-600">Languages Spoken</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {["English", "Hindi", "Telugu", "Urdu"].map((lang, idx) => (
+                          <Badge key={idx} variant="outline" className="border-red-600/50 text-gray-300">
+                            {lang}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Availability */}
+                    <div>
+                      <h3 className="text-lg font-semibold mb-3 text-red-600">Availability</h3>
+                      <div className="flex gap-2">
+                        <Badge className="bg-red-600 text-white">In-person</Badge>
+                        <Badge className="bg-red-600 text-white">Online (🇺🇸🇦🇺🇨🇦)</Badge>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Right Side - Details */}
+                <div className="p-8 lg:p-12 bg-gray-900/50">
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <h3 className="text-2xl font-bold mb-6 text-red-600">About</h3>
+                    <p className="text-gray-300 leading-relaxed mb-8">
+                      Meet Mohammed Rahemathkhan, a highly experienced fitness coach with over 22 years 
+                      of experience in the industry. With a strong passion for health and fitness, Mohammed 
+                      has dedicated his career to helping others achieve their fitness goals.
+                    </p>
+                    <p className="text-gray-300 leading-relaxed mb-8">
+                      Specializing in various areas such as strength training, sports nutrition, pain management, 
+                      crossfit, sports specific training, women&apos;s health, weightlifting, HIIT, and home workouts, 
+                      Mohammed has a wide range of expertise to cater to the specific needs of his clients.
+                    </p>
+                    <p className="text-gray-300 leading-relaxed mb-8">
+                      Known for his target-oriented approach, Mohammed focuses on helping his clients achieve 
+                      their desired results within a specific timeframe. He is also a body toning specialist and 
+                      has a strong understanding of special population disorders, making him a go-to coach for 
+                      individuals with specific health concerns.
+                    </p>
+                    <div className="bg-red-600/10 border border-red-600/30 p-4 rounded-lg mb-6">
+                      <p className="text-red-400 font-semibold">
+                        💰 Guaranteed results or money-back guarantee
+                      </p>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </Card>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Certifications */}
+      <section className="py-20 bg-gray-900">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-red-600">
+              Certifications & Credentials
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {certifications.map((cert, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <Card className="bg-black border-red-600/30 hover:border-red-600 transition-colors">
+                    <CardContent className="p-4 flex items-center">
+                      <Award className="h-5 w-5 text-red-600 mr-3 flex-shrink-0" />
+                      <span className="text-gray-300">{cert}</span>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Specializations */}
+      <section className="py-20 bg-black">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-6xl mx-auto"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-red-600">
+              Specializations
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {specializations.map((spec, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <Card className="bg-gradient-to-br from-gray-900 to-black border-red-600/30 hover:border-red-600 transition-all cursor-pointer">
+                    <CardContent className="p-4 text-center">
+                      <CheckCircle className="h-5 w-5 text-red-600 mx-auto mb-2" />
+                      <span className="text-sm text-gray-300">{spec}</span>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Special Populations */}
+      <section className="py-20 bg-gray-900">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-red-600">
+              Special Population Expertise
+            </h2>
+            <p className="text-xl text-gray-300 mb-8">
+              Specialized expertise in strength, nutrition, and injury management for:
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              {["Thyroid", "Diabetic", "PCOD/PCOS", "Hormonal Imbalance"].map((condition, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <Card className="bg-black border-2 border-red-600/50 hover:border-red-600 transition-colors">
+                    <CardContent className="p-6">
+                      <Heart className="h-8 w-8 text-red-600 mx-auto mb-3" />
+                      <h3 className="font-semibold text-white">{condition}</h3>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Second Coach - Surendar */}
+      <section className="py-20 bg-black">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto"
+          >
+            <Card className="bg-gradient-to-br from-gray-900 to-black border-2 border-red-600/50">
+              <CardHeader className="text-center">
+                <CardTitle className="text-3xl md:text-4xl text-red-600 mb-4">Surendar</CardTitle>
+                <Badge className="bg-red-600 text-white w-fit mx-auto">Professional Trainer</Badge>
+              </CardHeader>
+              <CardContent className="p-8">
+                <p className="text-gray-300 text-center leading-relaxed">
+                  Our dedicated professional trainer Surendar brings expertise and passion to help you 
+                  achieve your fitness goals. With years of experience in personal training and group 
+                  fitness, Surendar is committed to providing personalized guidance and motivation 
+                  to every member.
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 bg-gradient-to-br from-red-950 to-black">
+        <div className="container mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-2xl mx-auto"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+              Ready to Transform Your Life?
+            </h2>
+            <p className="text-xl text-gray-300 mb-8">
+              Join our expert coaches and start your fitness journey today
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/register">
+                <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+                  Get Started
+                </button>
+              </a>
+              <a href="/contact">
+                <button className="border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white px-8 py-4 rounded-lg font-semibold transition-colors text-lg">
+                  Contact Us
+                </button>
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  )
+}
+

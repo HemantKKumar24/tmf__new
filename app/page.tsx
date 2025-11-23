@@ -10,12 +10,26 @@ import { Footer } from "@/components/footer"
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-black text-white">
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+      <section className="relative min-h-[90vh] flex items-center justify-center text-white overflow-hidden">
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-40"
+          >
+            <source src="/gym-video.mp4" type="video/mp4" />
+            <source src="https://videos.pexels.com/video-files/4753995/4753995-hd_1920_1080_25fps.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-red-950/60 to-black/80"></div>
+        </div>
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10 [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -83,7 +97,7 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-900">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -129,7 +143,7 @@ export default function HomePage() {
                       <feature.icon className="h-8 w-8 text-red-600" />
                     </div>
                     <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                    <p className="text-gray-600">{feature.description}</p>
+                    <p className="text-gray-300">{feature.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -164,7 +178,7 @@ export default function HomePage() {
       </section>
 
       {/* Membership Plans Preview */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-black">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -226,7 +240,7 @@ export default function HomePage() {
                       {plan.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start">
                           <CheckCircle className="h-5 w-5 text-red-600 mr-2 flex-shrink-0 mt-0.5" />
-                          <span className="text-gray-700">{feature}</span>
+                          <span className="text-gray-300">{feature}</span>
                         </li>
                       ))}
                     </ul>

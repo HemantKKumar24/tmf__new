@@ -71,6 +71,13 @@ export function Navbar() {
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
+                <Link href="/coaches" legacyBehavior passHref>
+                  <NavigationMenuLink className="px-4 py-2 text-sm font-medium hover:text-red-600 transition-colors">
+                    Coaches
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
                 <Link href="/about" legacyBehavior passHref>
                   <NavigationMenuLink className="px-4 py-2 text-sm font-medium hover:text-red-600 transition-colors">
                     About
@@ -193,6 +200,9 @@ export function Navbar() {
               </Link>
               <Link href="/testimonials" className="block py-2 text-sm font-medium hover:text-red-600">
                 Testimonials
+              </Link>
+              <Link href="/coaches" className="block py-2 text-sm font-medium hover:text-red-600">
+                Coaches
               </Link>
               <Link href="/about" className="block py-2 text-sm font-medium hover:text-red-600">
                 About

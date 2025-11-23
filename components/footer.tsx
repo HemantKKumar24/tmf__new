@@ -60,6 +60,11 @@ export function Footer() {
                   Testimonials
                 </Link>
               </li>
+              <li>
+                <Link href="/coaches" className="text-gray-400 hover:text-red-600 transition-colors">
+                  Coaches
+                </Link>
+              </li>
             </ul>
           </div>
 

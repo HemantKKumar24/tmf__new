@@ -2,6 +2,8 @@
 
 A modern, feature-rich gym website built with Next.js, featuring membership plans, class scheduling, payment integration, and more.
 
+**Developed by:** Hemant Dobriyal
+
 ## 🚀 Tech Stack
 
 - **Frontend**: Next.js 16 (React), TypeScript, Tailwind CSS
@@ -239,5 +241,7 @@ For issues or questions:
 This project is proprietary and confidential.
 
 ---
+
+**Website Developer:** Hemant Dobriyal
 
 Built with ❤️ for TEAM MUSCLE FITNESS GYM

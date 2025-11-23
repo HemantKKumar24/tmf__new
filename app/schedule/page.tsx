@@ -169,7 +169,7 @@ export default function SchedulePage() {
   const isFull = (cls: typeof classes[0]) => cls.enrolled >= cls.capacity
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-black text-white">
       <Navbar />
       
       {/* Header */}
@@ -190,7 +190,7 @@ export default function SchedulePage() {
       </section>
 
       {/* Schedule */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-900">
         <div className="container mx-auto px-4">
           <Tabs value={selectedDay.toString()} onValueChange={(val) => setSelectedDay(parseInt(val))} className="w-full">
             <TabsList className="grid w-full grid-cols-7 mb-8">
@@ -276,7 +276,7 @@ export default function SchedulePage() {
       </section>
 
       {/* Gym Hours */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-black">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -310,7 +310,7 @@ export default function SchedulePage() {
                   </div>
                 </div>
                 <div className="mt-6 p-4 bg-red-50 rounded-lg">
-                  <p className="text-sm text-gray-700">
+                  <p className="text-sm text-gray-300">
                     <CheckCircle className="h-4 w-4 inline mr-2 text-red-600" />
                     Please arrive 10 minutes before your scheduled class
                   </p>
