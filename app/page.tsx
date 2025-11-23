@@ -45,7 +45,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 bg-gradient-to-r from-white via-red-50 to-red-400 bg-clip-text text-transparent drop-shadow-2xl tracking-tight leading-tight font-brand"
+              className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 bg-gradient-to-r from-white via-red-50 to-red-400 bg-clip-text text-transparent drop-shadow-2xl tracking-tight leading-tight font-heading"
             >
               TEAM MUSCLE FITNESS
             </motion.h1>

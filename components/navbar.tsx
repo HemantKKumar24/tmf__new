@@ -67,67 +67,67 @@ export function Navbar() {
           <NavigationMenu className="hidden md:flex">
             <NavigationMenuList>
               <NavigationMenuItem>
-                <Link href="/" legacyBehavior passHref>
-                  <NavigationMenuLink className={`px-4 py-2 text-sm font-medium transition-colors ${
+                <NavigationMenuLink asChild>
+                  <Link href="/" className={`px-4 py-2 text-sm font-medium transition-colors ${
                     scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
                   }`}>
                     Home
-                  </NavigationMenuLink>
-                </Link>
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/plans" legacyBehavior passHref>
-                  <NavigationMenuLink className={`px-4 py-2 text-sm font-medium transition-colors ${
+                <NavigationMenuLink asChild>
+                  <Link href="/plans" className={`px-4 py-2 text-sm font-medium transition-colors ${
                     scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
                   }`}>
                     Plans
-                  </NavigationMenuLink>
-                </Link>
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/schedule" legacyBehavior passHref>
-                  <NavigationMenuLink className={`px-4 py-2 text-sm font-medium transition-colors ${
+                <NavigationMenuLink asChild>
+                  <Link href="/schedule" className={`px-4 py-2 text-sm font-medium transition-colors ${
                     scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
                   }`}>
                     Schedule
-                  </NavigationMenuLink>
-                </Link>
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/coaches" legacyBehavior passHref>
-                  <NavigationMenuLink className={`px-4 py-2 text-sm font-medium transition-colors ${
+                <NavigationMenuLink asChild>
+                  <Link href="/coaches" className={`px-4 py-2 text-sm font-medium transition-colors ${
                     scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
                   }`}>
                     Coaches
-                  </NavigationMenuLink>
-                </Link>
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/about" legacyBehavior passHref>
-                  <NavigationMenuLink className={`px-4 py-2 text-sm font-medium transition-colors ${
+                <NavigationMenuLink asChild>
+                  <Link href="/about" className={`px-4 py-2 text-sm font-medium transition-colors ${
                     scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
                   }`}>
                     About
-                  </NavigationMenuLink>
-                </Link>
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/contact" legacyBehavior passHref>
-                  <NavigationMenuLink className={`px-4 py-2 text-sm font-medium transition-colors ${
+                <NavigationMenuLink asChild>
+                  <Link href="/contact" className={`px-4 py-2 text-sm font-medium transition-colors ${
                     scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
                   }`}>
                     Contact
-                  </NavigationMenuLink>
-                </Link>
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/faq" legacyBehavior passHref>
-                  <NavigationMenuLink className={`px-4 py-2 text-sm font-medium transition-colors ${
+                <NavigationMenuLink asChild>
+                  <Link href="/faq" className={`px-4 py-2 text-sm font-medium transition-colors ${
                     scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
                   }`}>
                     FAQ
-                  </NavigationMenuLink>
-                </Link>
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
