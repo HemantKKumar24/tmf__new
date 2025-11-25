@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useState } from "react"
-import { MapPin, Phone, Mail, Clock, Send, Facebook, Instagram, Twitter, Youtube } from "lucide-react"
+import { MapPin, Phone, Mail, Clock, Send, Facebook, Instagram, Twitter, Youtube, Loader2, CheckCircle, AlertCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -19,13 +19,39 @@ export default function ContactPage() {
     subject: "",
     message: "",
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [errorMessage, setErrorMessage] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log("Form submitted:", formData)
-    alert("Thank you for your message! We'll get back to you soon.")
-    setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
+    setIsSubmitting(true)
+    setSubmitStatus("idle")
+    setErrorMessage("")
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message")
+      }
+
+      setSubmitStatus("success")
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
+    } catch (error) {
+      setSubmitStatus("error")
+      setErrorMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -131,10 +157,45 @@ export default function ContactPage() {
                         className="bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
                       />
                     </div>
-                    <Button type="submit" className="w-full bg-red-600 hover:bg-red-700">
-                      <Send className="mr-2 h-4 w-4" />
-                      Send Message
+                    <Button 
+                      type="submit" 
+                      className="w-full bg-red-600 hover:bg-red-700 disabled:opacity-50"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="mr-2 h-4 w-4" />
+                          Send Message
+                        </>
+                      )}
                     </Button>
+
+                    {submitStatus === "success" && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex items-center gap-2 p-4 bg-green-900/50 border border-green-600 rounded-lg text-green-400"
+                      >
+                        <CheckCircle className="h-5 w-5 flex-shrink-0" />
+                        <p>Thank you for your message! We&apos;ll get back to you soon. Check your email for confirmation.</p>
+                      </motion.div>
+                    )}
+
+                    {submitStatus === "error" && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex items-center gap-2 p-4 bg-red-900/50 border border-red-600 rounded-lg text-red-400"
+                      >
+                        <AlertCircle className="h-5 w-5 flex-shrink-0" />
+                        <p>{errorMessage}</p>
+                      </motion.div>
+                    )}
                   </form>
                 </CardContent>
               </Card>
