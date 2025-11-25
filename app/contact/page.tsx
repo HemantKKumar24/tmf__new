@@ -1,7 +1,7 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { useState, useEffect, useRef } from "react"
 import { MapPin, Phone, Mail, Clock, Send, Facebook, Instagram, Twitter, Youtube, Loader2, CheckCircle, AlertCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -22,6 +22,32 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState("")
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  // Clear timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
+  }, [])
+
+  // Auto-hide message after 5 seconds
+  useEffect(() => {
+    if (submitStatus !== "idle") {
+      // Clear any existing timeout
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+      
+      // Set new timeout to hide message after 5 seconds
+      timeoutRef.current = setTimeout(() => {
+        setSubmitStatus("idle")
+        setErrorMessage("")
+      }, 5000)
+    }
+  }, [submitStatus])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -29,13 +55,17 @@ export default function ContactPage() {
     setSubmitStatus("idle")
     setErrorMessage("")
 
+    // Clear form immediately when submitting
+    const submittedData = { ...formData }
+    setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(submittedData),
       })
 
       const data = await response.json()
@@ -45,7 +75,6 @@ export default function ContactPage() {
       }
 
       setSubmitStatus("success")
-      setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
     } catch (error) {
       setSubmitStatus("error")
       setErrorMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.")
@@ -175,27 +204,35 @@ export default function ContactPage() {
                       )}
                     </Button>
 
-                    {submitStatus === "success" && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="flex items-center gap-2 p-4 bg-green-900/50 border border-green-600 rounded-lg text-green-400"
-                      >
-                        <CheckCircle className="h-5 w-5 flex-shrink-0" />
-                        <p>Thank you for your message! We&apos;ll get back to you soon. Check your email for confirmation.</p>
-                      </motion.div>
-                    )}
+                    <AnimatePresence mode="wait">
+                      {submitStatus === "success" && (
+                        <motion.div
+                          key="success"
+                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                          transition={{ duration: 0.3 }}
+                          className="flex items-center gap-2 p-4 bg-green-900/50 border border-green-600 rounded-lg text-green-400"
+                        >
+                          <CheckCircle className="h-5 w-5 flex-shrink-0" />
+                          <p>Thank you for your message! We&apos;ll get back to you soon. Check your email for confirmation.</p>
+                        </motion.div>
+                      )}
 
-                    {submitStatus === "error" && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="flex items-center gap-2 p-4 bg-red-900/50 border border-red-600 rounded-lg text-red-400"
-                      >
-                        <AlertCircle className="h-5 w-5 flex-shrink-0" />
-                        <p>{errorMessage}</p>
-                      </motion.div>
-                    )}
+                      {submitStatus === "error" && (
+                        <motion.div
+                          key="error"
+                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                          transition={{ duration: 0.3 }}
+                          className="flex items-center gap-2 p-4 bg-red-900/50 border border-red-600 rounded-lg text-red-400"
+                        >
+                          <AlertCircle className="h-5 w-5 flex-shrink-0" />
+                          <p>{errorMessage}</p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </form>
                 </CardContent>
               </Card>
