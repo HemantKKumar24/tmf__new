@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { 
+import {
   Award, Users, Globe, CheckCircle, Star, Trophy, Target, Heart, Dumbbell, TrendingUp,
   Activity, Zap, Flame, Apple, Pill, Stethoscope, Brain, Shield, Sparkles, Dumbbell as DumbbellIcon,
   HeartPulse, Syringe, Scale, Waves, Bike, Timer, UtensilsCrossed, Home
@@ -37,8 +37,8 @@ const specializations = [
 ]
 
 const stats = [
-  { icon: Users, label: "Years Experience", value: "22+" },
-  { icon: Trophy, label: "Clients Coached", value: "1000+" },
+  { icon: Users, label: "Years Experience", value: "23+" },
+  { icon: Trophy, label: "Clients Coached", value: "2,500+" },
   { icon: Globe, label: "Languages", value: "4" },
   { icon: Award, label: "Certifications", value: "5+" },
 ]
@@ -47,7 +47,7 @@ export default function CoachesPage() {
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
       <Navbar />
-      
+
       {/* Header */}
       <section className="relative bg-gradient-to-br from-black via-red-950 to-black py-20 overflow-hidden">
         {/* Gradient fade to next section */}
@@ -83,7 +83,7 @@ export default function CoachesPage() {
         {/* Gradient fade from previous section */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent z-10"></div>
         {/* Background Image */}
-        <div 
+        <div
           className="absolute inset-0 opacity-10"
           style={{
             backgroundImage: "url('/bg_pic/2.png')",
@@ -95,7 +95,7 @@ export default function CoachesPage() {
         <div className="absolute inset-0 bg-black/80"></div>
         {/* Gradient fade to next section */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent z-10"></div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -116,11 +116,11 @@ export default function CoachesPage() {
                 {/* Animated Border */}
                 <div className="absolute -inset-2 bg-gradient-to-r from-red-600 via-red-500 to-red-600 rounded-lg opacity-75 group-hover:opacity-100 blur-sm animate-pulse"></div>
                 <div className="absolute -inset-1 bg-gradient-to-r from-red-600 via-red-400 to-red-600 rounded-lg opacity-50 animate-spin-slow"></div>
-                
+
                 {/* Image Container */}
                 <div className="relative rounded-lg overflow-hidden border-4 border-red-600 shadow-2xl">
                   <motion.img
-                    src="/bg_pic/2.png"
+                    src="/bg_pic/19.jpeg"
                     alt="Mohammed Rahemathkhan - Master Trainer"
                     className="w-full max-w-md h-auto object-cover"
                     whileHover={{ scale: 1.05 }}
@@ -128,7 +128,7 @@ export default function CoachesPage() {
                   />
                   {/* Overlay Gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                  
+
                   {/* Badge Overlay */}
                   <div className="absolute bottom-4 left-4 right-4">
                     <Badge className="bg-red-600 text-white text-lg px-4 py-2">
@@ -156,7 +156,7 @@ export default function CoachesPage() {
                     <p className="text-xl text-gray-300 mb-6">
                       Master Personal Trainer | Bodybuilding Transformation Specialist
                     </p>
-                    
+
                     {/* Stats */}
                     <div className="grid grid-cols-2 gap-4 mb-8">
                       {stats.map((stat, index) => (
@@ -191,8 +191,8 @@ export default function CoachesPage() {
                     <div>
                       <h3 className="text-lg font-semibold mb-3 text-red-600">Availability</h3>
                       <div className="flex gap-2">
-                        <Badge className="bg-red-600 text-white">In-person</Badge>
-                        <Badge className="bg-red-600 text-white">Online (🇺🇸🇦🇺🇨🇦)</Badge>
+                        <Badge className="bg-red-600 text-white">In-person(Branch)</Badge>
+                        <Badge className="bg-red-600 text-white">Online (USA | Australia | Sweden | Germany)</Badge>
                       </div>
                     </div>
                   </motion.div>
@@ -208,26 +208,18 @@ export default function CoachesPage() {
                   >
                     <h3 className="text-2xl font-bold mb-6 text-red-600">About</h3>
                     <p className="text-gray-300 leading-relaxed mb-8">
-                      Meet Mohammed Rahemathkhan, a highly experienced fitness coach with over 22 years 
-                      of experience in the industry. With a strong passion for health and fitness, Mohammed 
-                      has dedicated his career to helping others achieve their fitness goals.
+                      Introducing Mohammad Rahmat Khan — a powerhouse in the global fitness industry with over 23 years of hands-on experience and a proven track record of transforming lives.
+                      With 2,500+ clients served, Mohammad has earned his reputation as a renowned bodybuilding expert and coach, a transformation specialist, and a lifestyle mentor who approaches fitness through a holistic lens.
                     </p>
                     <p className="text-gray-300 leading-relaxed mb-8">
-                      Specializing in various areas such as strength training, sports nutrition, pain management, 
-                      crossfit, sports specific training, women&apos;s health, weightlifting, HIIT, and home workouts, 
-                      Mohammed has a wide range of expertise to cater to the specific needs of his clients.
-                    </p>
+                      His expertise extends beyond training — he is also a certified nutritionist and dietitian, enabling him to craft complete, science-based programs tailored to every individual’s body, goals, and lifestyle.
+
+                      Mohammad’s impact isn’t limited by borders. Through his highly successful online coaching platform, he works with clients across the United States, Australia, Sweden, Germany, and more, helping people around the world unlock their peak physical and mental potential. </p>
                     <p className="text-gray-300 leading-relaxed mb-8">
-                      Known for his target-oriented approach, Mohammed focuses on helping his clients achieve 
-                      their desired results within a specific timeframe. He is also a body toning specialist and 
-                      has a strong understanding of special population disorders, making him a go-to coach for 
-                      individuals with specific health concerns.
-                    </p>
-                    <div className="bg-red-600/10 border border-red-600/30 p-4 rounded-lg mb-6">
-                      <p className="text-red-400 font-semibold">
-                        💰 Guaranteed results or money-back guarantee
-                      </p>
-                    </div>
+                      His expertise extends beyond training — he is also a certified nutritionist and dietitian, enabling him to craft complete, science-based programs tailored to every individual’s body, goals, and lifestyle.
+
+                      Mohammad’s impact isn’t limited by borders. Through his highly successful online coaching platform, he works with clients across the United States, Australia, Sweden, Germany, and more, helping people around the world unlock their peak physical and mental potential. </p>
+
                   </motion.div>
                 </div>
               </div>
@@ -366,11 +358,11 @@ export default function CoachesPage() {
                     <Card className="bg-black border-2 border-red-600/50 hover:border-red-600 transition-all group">
                       <CardContent className="p-6 text-center">
                         <motion.div
-                          animate={{ 
+                          animate={{
                             scale: [1, 1.2, 1],
                             rotate: [0, 10, -10, 0]
                           }}
-                          transition={{ 
+                          transition={{
                             duration: 2,
                             repeat: Infinity,
                             repeatDelay: 3
@@ -411,9 +403,9 @@ export default function CoachesPage() {
               </CardHeader>
               <CardContent className="p-8">
                 <p className="text-gray-300 text-center leading-relaxed">
-                  Our dedicated professional trainer Surendar brings expertise and passion to help you 
-                  achieve your fitness goals. With years of experience in personal training and group 
-                  fitness, Surendar is committed to providing personalized guidance and motivation 
+                  Our dedicated professional trainer Surendar brings expertise and passion to help you
+                  achieve your fitness goals. With years of experience in personal training and group
+                  fitness, Surendar is committed to providing personalized guidance and motivation
                   to every member.
                 </p>
               </CardContent>
