@@ -28,6 +28,7 @@ interface ContactFormData {
   name: string;
   email: string;
   phone?: string;
+  location?: string;
   subject: string;
   message: string;
 }
@@ -43,7 +44,7 @@ export async function sendContactEmail(data: ContactFormData) {
     throw new Error("Email service not configured. Please contact the administrator.");
   }
 
-  const { name, email, phone, subject, message } = data;
+  const { name, email, phone, location, subject, message } = data;
 
   // Common attachment for logo
   const logoAttachment = {
@@ -129,6 +130,22 @@ export async function sendContactEmail(data: ContactFormData) {
                       <td style="padding-left: 15px; vertical-align: middle;">
                         <p style="margin: 0; color: #9ca3af; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Phone</p>
                         <a href="tel:${phone}" style="margin: 4px 0 0 0; color: #ef4444; font-size: 16px; font-weight: 500; text-decoration: none; display: block;">${phone}</a>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                ` : ''}
+                
+                ${location ? `
+                <div style="background: linear-gradient(135deg, #4b5563 0%, #374151 100%); border-radius: 16px; padding: 20px; margin-bottom: 12px; border-left: 4px solid #dc2626;">
+                  <table style="width: 100%;">
+                    <tr>
+                      <td style="width: 40px; vertical-align: top;">
+                        <div style="width: 36px; height: 36px; background: linear-gradient(135deg, #dc2626, #b91c1c); border-radius: 10px; text-align: center; line-height: 36px; font-size: 18px;">📍</div>
+                      </td>
+                      <td style="padding-left: 15px; vertical-align: middle;">
+                        <p style="margin: 0; color: #9ca3af; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Location / Address</p>
+                        <p style="margin: 4px 0 0 0; color: #f3f4f6; font-size: 16px; font-weight: 500;">${location}</p>
                       </td>
                     </tr>
                   </table>

@@ -105,6 +105,15 @@ export function Navbar() {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink asChild className="hover:bg-transparent focus:bg-transparent data-[active=true]:bg-transparent">
+                  <Link href="/gallery" className={`px-4 py-2 text-sm font-medium transition-colors ${
+                    scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
+                  }`}>
+                    Gallery
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild className="hover:bg-transparent focus:bg-transparent data-[active=true]:bg-transparent">
                   <Link href="/about" className={`px-4 py-2 text-sm font-medium transition-colors ${
                     scrolled ? "text-foreground hover:text-red-600" : "text-white hover:text-red-400 drop-shadow-md"
                   }`}>
@@ -232,6 +241,9 @@ export function Navbar() {
               </Link>
               <Link href="/coaches" className="block py-2 text-sm font-medium hover:text-red-600">
                 Coaches
+              </Link>
+              <Link href="/gallery" className="block py-2 text-sm font-medium hover:text-red-600">
+                Gallery
               </Link>
               <Link href="/about" className="block py-2 text-sm font-medium hover:text-red-600">
                 About

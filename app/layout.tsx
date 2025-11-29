@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Pacifico, PT_Serif, Noto_Serif, Roboto_Slab } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
+import { ScrollToTop } from "@/components/scroll-to-top";
 
 const pacifico = Pacifico({
   subsets: ["latin"],
@@ -47,6 +48,7 @@ export default function RootLayout({
       <body className={`${pacifico.variable} ${ptSerif.variable} ${notoSerif.variable} ${robotoSlab.variable} font-sans antialiased`}>
         <Providers>
           {children}
+          <ScrollToTop />
         </Providers>
       </body>
     </html>

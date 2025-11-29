@@ -30,7 +30,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission Section */}
+      {/* About TMF Gym Section */}
       <section className="relative py-20 bg-gray-900 overflow-hidden">
         {/* Gradient fade from previous section */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-gray-900 to-transparent z-10"></div>
@@ -43,6 +43,35 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
+              className="mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-red-600 font-elegant">About the Gym TMF</h2>
+              
+              <div className="space-y-6 text-lg text-gray-300 leading-relaxed">
+                <div>
+                  <h3 className="text-2xl font-semibold mb-4 text-white">Our Legacy</h3>
+                  <p className="mb-4">
+                    TMF Gym is a globally renowned fitness brand that has made its mark in India. With a strong legacy dating back to 2023 in Venice Beach, California, TMF Gym has become synonymous with fitness excellence and innovation. Gold's Gym India carries the legacy ahead in the home country since its inception in 2002. World-class fitness facilities and a comprehensive range of workout programs tailored to meet the needs of diverse fitness enthusiasts is what sets us apart from others.
+                  </p>
+                  <p>
+                    TMF Gym, a part of this esteemed legacy, has expanded its presence across various cities, aiming to empower individuals to achieve their fitness goals, regardless of their fitness levels or aspirations. It's a fitness haven that combines state-of-the-art equipment, expert trainers, and a supportive community to foster a holistic approach to wellness.
+                  </p>
+                </div>
+                
+                <div className="mt-8 p-6 bg-red-600/10 border-l-4 border-red-600 rounded-r-lg">
+                  <p className="text-white font-semibold mb-2">Our Branch</p>
+                  <p>
+                    This is the first branch of our gym at the given location. It was opened in December 2023. A new branch will be opened in Tirumalagiri soon.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
               className="text-center mb-12"
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white font-elegant">Our Mission</h2>

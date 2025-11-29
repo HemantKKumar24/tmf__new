@@ -16,6 +16,7 @@ export default function ContactPage() {
     name: "",
     email: "",
     phone: "",
+    location: "",
     subject: "",
     message: "",
   })
@@ -57,7 +58,7 @@ export default function ContactPage() {
 
     // Clear form immediately when submitting
     const submittedData = { ...formData }
-    setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
+    setFormData({ name: "", email: "", phone: "", location: "", subject: "", message: "" })
 
     try {
       const response = await fetch("/api/contact", {
@@ -160,6 +161,16 @@ export default function ContactPage() {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="+91 1234567890"
+                        className="bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="location" className="text-white">Location / Address</Label>
+                      <Input
+                        id="location"
+                        value={formData.location}
+                        onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                        placeholder="Your location or address"
                         className="bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
                       />
                     </div>
