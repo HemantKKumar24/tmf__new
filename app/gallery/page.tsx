@@ -4,9 +4,11 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import { Image as ImageIcon, Video, Grid3x3, Play } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card"
 import { Button } from "@/components/ui/button"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { GalleryLightbox } from "@/components/gallery-lightbox"
 
 // Gallery items - using images from public folder
 const galleryItems = [
@@ -28,10 +30,36 @@ type FilterType = "all" | "image" | "video"
 
 export default function GalleryPage() {
   const [filter, setFilter] = useState<FilterType>("all")
+  const [selectedItem, setSelectedItem] = useState<typeof galleryItems[0] | null>(null)
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false)
 
   const filteredItems = filter === "all" 
     ? galleryItems 
     : galleryItems.filter(item => item.type === filter)
+
+  const handleItemClick = (item: typeof galleryItems[0]) => {
+    setSelectedItem(item)
+    setIsLightboxOpen(true)
+  }
+
+  const handleCloseLightbox = () => {
+    setIsLightboxOpen(false)
+    setTimeout(() => setSelectedItem(null), 300)
+  }
+
+  const handleNext = () => {
+    if (!selectedItem) return
+    const currentIndex = filteredItems.findIndex(item => item.id === selectedItem.id)
+    const nextIndex = (currentIndex + 1) % filteredItems.length
+    setSelectedItem(filteredItems[nextIndex])
+  }
+
+  const handlePrevious = () => {
+    if (!selectedItem) return
+    const currentIndex = filteredItems.findIndex(item => item.id === selectedItem.id)
+    const prevIndex = currentIndex === 0 ? filteredItems.length - 1 : currentIndex - 1
+    setSelectedItem(filteredItems[prevIndex])
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
@@ -119,7 +147,7 @@ export default function GalleryPage() {
               <p className="text-xl text-gray-400">No items found in this category.</p>
             </motion.div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-2 sm:px-4">
               {filteredItems.map((item, index) => (
                 <motion.div
                   key={item.id}
@@ -128,66 +156,93 @@ export default function GalleryPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ y: -10, scale: 1.02 }}
-                  className="group"
+                  className="group cursor-pointer"
                 >
-                  <Card className="h-full overflow-hidden bg-gray-800 border-gray-700 hover:border-red-600/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-600/20">
-                    <CardContent className="p-0">
-                      <div className="relative aspect-square overflow-hidden">
-                        {item.type === "image" ? (
-                          <>
-                            <img
-                              src={item.src}
-                              alt={item.title}
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                              <p className="text-white font-semibold">{item.title}</p>
-                            </div>
-                          </>
-                        ) : (
-                          <>
-                            <video
-                              src={item.src}
-                              className="w-full h-full object-cover"
-                              muted
-                              loop
-                              playsInline
-                            />
-                            <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                              <motion.div
-                                whileHover={{ scale: 1.2 }}
-                                whileTap={{ scale: 0.9 }}
-                                className="w-16 h-16 rounded-full bg-red-600/90 flex items-center justify-center cursor-pointer"
-                              >
-                                <Play className="h-8 w-8 text-white ml-1" fill="white" />
-                              </motion.div>
-                            </div>
-                            <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                              <p className="text-white font-semibold">{item.title}</p>
-                            </div>
-                          </>
-                        )}
-                        <div className="absolute top-4 right-4">
+                  <div onClick={() => handleItemClick(item)} className="w-full">
+                    <CardContainer containerClassName="py-0" className="w-full">
+                      <CardBody 
+                        className="h-full overflow-hidden bg-gray-800 border-2 border-gray-700 hover:border-red-600/70 transition-all duration-300 hover:shadow-2xl hover:shadow-red-600/30 cursor-pointer rounded-xl"
+                      >
+                        <CardItem 
+                          translateZ="100" 
+                          rotateX={10} 
+                          className="p-1.5 w-full"
+                        >
+                        <div className="relative aspect-square overflow-hidden rounded-lg bg-gray-900/50">
                           {item.type === "image" ? (
-                            <div className="w-10 h-10 rounded-full bg-red-600/80 backdrop-blur-sm flex items-center justify-center">
-                              <ImageIcon className="h-5 w-5 text-white" />
-                            </div>
+                            <>
+                              <img
+                                src={item.src}
+                                alt={item.title}
+                                className="w-full h-full object-contain p-1.5 transition-transform duration-500 group-hover:scale-105 cursor-pointer"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                              <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                <p className="text-white font-semibold text-sm md:text-base drop-shadow-lg">{item.title}</p>
+                              </div>
+                            </>
                           ) : (
-                            <div className="w-10 h-10 rounded-full bg-red-600/80 backdrop-blur-sm flex items-center justify-center">
-                              <Video className="h-5 w-5 text-white" />
-                            </div>
+                            <>
+                              <video
+                                src={item.src}
+                                className="w-full h-full object-contain p-1.5 cursor-pointer"
+                                muted
+                                loop
+                                playsInline
+                              />
+                              <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                                <motion.div
+                                  whileHover={{ scale: 1.2 }}
+                                  whileTap={{ scale: 0.9 }}
+                                  className="w-20 h-20 rounded-full bg-red-600/95 flex items-center justify-center cursor-pointer shadow-2xl border-4 border-white/20 pointer-events-auto"
+                                >
+                                  <Play className="h-10 w-10 text-white ml-1" fill="white" />
+                                </motion.div>
+                              </div>
+                              <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                <p className="text-white font-semibold text-sm md:text-base drop-shadow-lg">{item.title}</p>
+                              </div>
+                            </>
                           )}
+                          <div className="absolute top-3 right-3">
+                            {item.type === "image" ? (
+                              <div className="w-10 h-10 rounded-full bg-red-600/90 backdrop-blur-md flex items-center justify-center shadow-lg border-2 border-white/20">
+                                <ImageIcon className="h-5 w-5 text-white" />
+                              </div>
+                            ) : (
+                              <div className="w-10 h-10 rounded-full bg-red-600/90 backdrop-blur-md flex items-center justify-center shadow-lg border-2 border-white/20">
+                                <Video className="h-5 w-5 text-white" />
+                              </div>
+                            )}
+                          </div>
+                          {/* Click hint overlay */}
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                            <div className="px-4 py-2 bg-black/70 backdrop-blur-sm rounded-full border border-red-600/50">
+                              <p className="text-white text-xs font-semibold">Click to view</p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                      </CardItem>
+                    </CardBody>
+                  </CardContainer>
+                  </div>
                 </motion.div>
               ))}
             </div>
           )}
         </div>
       </section>
+
+      {/* Lightbox Modal */}
+      <GalleryLightbox
+        isOpen={isLightboxOpen}
+        onClose={handleCloseLightbox}
+        item={selectedItem}
+        onNext={handleNext}
+        onPrevious={handlePrevious}
+        hasNext={selectedItem ? filteredItems.length > 1 : false}
+        hasPrevious={selectedItem ? filteredItems.length > 1 : false}
+      />
 
       <Footer />
     </div>

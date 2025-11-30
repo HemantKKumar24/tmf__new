@@ -1,17 +1,100 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useState } from "react"
 import Link from "next/link"
 import { ArrowRight, Dumbbell, Users, Award, Clock, CheckCircle, Activity, Zap, Target, HeartPulse, Flame, Shield, Star, Quote, Apple } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { VideoBackground } from "@/components/video-background"
+import { TestimonialModal } from "@/components/testimonial-modal"
 
 export default function HomePage() {
+  const [selectedTestimonial, setSelectedTestimonial] = useState<typeof allTestimonials[0] | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const allTestimonials = [
+    {
+      id: 1,
+      name: "Hemant Dobriyal",
+      image: "",
+      rating: 5,
+      comment: "My fitness journey with TEAM MUSCLE FITNESS has been absolutely incredible! Starting with the Platinum pack and personal training sessions with Coach Rahemath Khan, I've achieved amazing results. From my initial fitness assessment to now, I've lost significant weight, gained incredible strength, and completely transformed my body. Coach Rahemath's expertise, personalized meal plans, and constant motivation made all the difference. This isn't just a gym - it's a life-changing experience!",
+      plan: "Platinum Member",
+      months: 8,
+      trainer: "Rahemath Khan",
+    },
+    {
+      id: 2,
+      name: "Rahul Sharma",
+      image: "",
+      rating: 5,
+      comment: "TEAM MUSCLE FITNESS has completely transformed my life! The trainers are incredibly knowledgeable and supportive. I've lost 15kg in just 3 months and feel stronger than ever.",
+      plan: "Gold Member",
+      months: 6,
+    },
+    {
+      id: 3,
+      name: "Priya Patel",
+      image: "",
+      rating: 5,
+      comment: "Best gym in Hyderabad! The facilities are top-notch and the community is amazing. The personal training sessions have helped me achieve goals I never thought possible.",
+      plan: "Silver Member",
+      months: 4,
+    },
+    {
+      id: 4,
+      name: "Vikram Reddy",
+      image: "",
+      rating: 5,
+      comment: "I've been a member for over a year now and I can't imagine going anywhere else. The equipment is always well-maintained and the staff is friendly and professional.",
+      plan: "Gold Member",
+      months: 12,
+    },
+    {
+      id: 5,
+      name: "Anita Desai",
+      image: "",
+      rating: 5,
+      comment: "The yoga and flexibility classes are fantastic! I've improved my posture and reduced back pain significantly. Highly recommend to anyone looking for a holistic fitness approach.",
+      plan: "Basic Member",
+      months: 3,
+    },
+    {
+      id: 6,
+      name: "Arjun Nair",
+      image: "",
+      rating: 5,
+      comment: "The HIIT classes are intense but so rewarding! I've gained incredible strength and endurance. The trainers push you to be your best while ensuring safety.",
+      plan: "Silver Member",
+      months: 8,
+    },
+  ]
+
+  // Show only first 6 testimonials on home page
+  const displayedTestimonials = allTestimonials.slice(0, 6)
+
+  const handleReadMore = (testimonial: typeof allTestimonials[0]) => {
+    setSelectedTestimonial(testimonial)
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setTimeout(() => setSelectedTestimonial(null), 300)
+  }
+
+  // Truncate text function
+  const truncateText = (text: string, maxLength: number = 120) => {
+    if (text.length <= maxLength) return text
+    return text.substring(0, maxLength) + "..."
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
       <Navbar />
@@ -120,7 +203,7 @@ export default function HomePage() {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-gray-900 to-transparent z-10"></div>
         {/* Background Image */}
         <div 
-          className="absolute inset-0 opacity-15"
+          className="absolute inset-0 opacity-30"
           style={{
             backgroundImage: "url('/bg_pic/1.png')",
             backgroundSize: "cover",
@@ -128,7 +211,7 @@ export default function HomePage() {
             backgroundAttachment: "fixed",
           }}
         />
-        <div className="absolute inset-0 bg-black/70"></div>
+        <div className="absolute inset-0 bg-black/60"></div>
         {/* Gradient fade to next section */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-red-600 to-transparent z-10"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -171,22 +254,25 @@ export default function HomePage() {
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
-                  whileHover={{ y: -10, scale: 1.05 }}
                   className="cursor-pointer"
                 >
-                  <Card className="h-full hover:shadow-2xl hover:shadow-red-600/50 transition-all border-2 border-red-600/30 hover:border-red-600 bg-gradient-to-br from-gray-900 to-black">
-                    <CardContent className="p-8 text-center">
-                      <motion.div
-                        whileHover={{ rotate: 360, scale: 1.2 }}
-                        transition={{ duration: 0.5 }}
+                  <CardContainer containerClassName="py-0" className="w-full">
+                    <CardBody className="h-full hover:shadow-2xl hover:shadow-red-600/50 transition-all border-2 border-red-600/30 hover:border-red-600 bg-gradient-to-br from-gray-900 to-black rounded-xl p-8 text-center">
+                      <CardItem
+                        translateZ="50"
+                        rotateX={10}
                         className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-red-600/20 mb-4 group-hover:bg-red-600/30 transition-colors"
                       >
                         <IconComponent className="h-10 w-10 text-red-600" />
-                      </motion.div>
-                      <h3 className="text-xl font-semibold mb-3 text-white">{feature.title}</h3>
-                      <p className="text-gray-300">{feature.description}</p>
-                    </CardContent>
-                  </Card>
+                      </CardItem>
+                      <CardItem translateZ="60" className="text-xl font-semibold mb-3 text-white">
+                        <h3>{feature.title}</h3>
+                      </CardItem>
+                      <CardItem translateZ="40" className="text-gray-300">
+                        <p>{feature.description}</p>
+                      </CardItem>
+                    </CardBody>
+                  </CardContainer>
                 </motion.div>
               )
             })}
@@ -229,7 +315,7 @@ export default function HomePage() {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent z-10"></div>
         {/* Background Image */}
         <div 
-          className="absolute inset-0 opacity-15"
+          className="absolute inset-0 opacity-30"
           style={{
             backgroundImage: "url('/bg_pic/3.png')",
             backgroundSize: "cover",
@@ -237,7 +323,7 @@ export default function HomePage() {
             backgroundAttachment: "fixed",
           }}
         />
-        <div className="absolute inset-0 bg-black/80"></div>
+        <div className="absolute inset-0 bg-black/60"></div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -253,63 +339,7 @@ export default function HomePage() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                id: 1,
-                name: "Hemant Dobriyal",
-                image: "",
-                rating: 5,
-                comment: "My fitness journey with TEAM MUSCLE FITNESS has been absolutely incredible! Starting with the Platinum pack and personal training sessions with Coach Rahemath Khan, I've achieved amazing results. From my initial fitness assessment to now, I've lost significant weight, gained incredible strength, and completely transformed my body. Coach Rahemath's expertise, personalized meal plans, and constant motivation made all the difference. This isn't just a gym - it's a life-changing experience!",
-                plan: "Platinum Member",
-                months: 8,
-                trainer: "Rahemath Khan",
-              },
-              {
-                id: 2,
-                name: "Rahul Sharma",
-                image: "",
-                rating: 5,
-                comment: "TEAM MUSCLE FITNESS has completely transformed my life! The trainers are incredibly knowledgeable and supportive. I've lost 15kg in just 3 months and feel stronger than ever.",
-                plan: "Gold Member",
-                months: 6,
-              },
-              {
-                id: 3,
-                name: "Priya Patel",
-                image: "",
-                rating: 5,
-                comment: "Best gym in Hyderabad! The facilities are top-notch and the community is amazing. The personal training sessions have helped me achieve goals I never thought possible.",
-                plan: "Silver Member",
-                months: 4,
-              },
-              {
-                id: 4,
-                name: "Vikram Reddy",
-                image: "",
-                rating: 5,
-                comment: "I've been a member for over a year now and I can't imagine going anywhere else. The equipment is always well-maintained and the staff is friendly and professional.",
-                plan: "Gold Member",
-                months: 12,
-              },
-              {
-                id: 5,
-                name: "Anita Desai",
-                image: "",
-                rating: 5,
-                comment: "The yoga and flexibility classes are fantastic! I've improved my posture and reduced back pain significantly. Highly recommend to anyone looking for a holistic fitness approach.",
-                plan: "Basic Member",
-                months: 3,
-              },
-              {
-                id: 6,
-                name: "Arjun Nair",
-                image: "",
-                rating: 5,
-                comment: "The HIIT classes are intense but so rewarding! I've gained incredible strength and endurance. The trainers push you to be your best while ensuring safety.",
-                plan: "Silver Member",
-                months: 8,
-              },
-            ].map((testimonial, index) => (
+            {displayedTestimonials.map((testimonial, index) => (
               <motion.div
                 key={testimonial.id}
                 initial={{ opacity: 0, y: 30, scale: 0.9 }}
@@ -319,9 +349,9 @@ export default function HomePage() {
                 whileHover={{ y: -5, scale: 1.02 }}
                 className="cursor-pointer"
               >
-                <Card className="h-full bg-gradient-to-br from-gray-900 to-black border-2 border-red-600/30 hover:border-red-600 transition-all hover:shadow-2xl hover:shadow-red-600/20">
-                  <CardContent className="p-6">
-                    <div className="flex items-center mb-4">
+                <CardContainer containerClassName="py-0" className="w-full">
+                  <CardBody className="h-full max-h-[400px] flex flex-col bg-gradient-to-br from-gray-900 to-black border-2 border-red-600/30 hover:border-red-600 transition-all hover:shadow-2xl hover:shadow-red-600/20 rounded-xl p-6">
+                    <CardItem translateZ="50" className="flex items-center mb-4">
                       <Avatar className="h-12 w-12 mr-4 border-2 border-red-600/50">
                         <AvatarImage src={testimonial.image} />
                         <AvatarFallback className="bg-red-600/20 text-red-600 font-bold">
@@ -335,35 +365,88 @@ export default function HomePage() {
                           <p className="text-xs text-red-600">Trainer: {testimonial.trainer}</p>
                         )}
                       </div>
-                    </div>
+                    </CardItem>
                     
-                    <div className="flex mb-3">
+                    <CardItem translateZ="40" className="flex mb-3">
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                       ))}
-                    </div>
+                    </CardItem>
                     
-                    <Quote className="h-5 w-5 text-red-600 mb-2 opacity-50" />
-                    <p className="text-gray-300 mb-4 italic text-sm leading-relaxed">{testimonial.comment}</p>
-                    
-                    <div className="flex items-center justify-between pt-4 border-t border-red-600/20">
-                      <p className="text-xs text-gray-500">
-                        Member for {testimonial.months} {testimonial.months === 1 ? "month" : "months"}
+                    <CardItem translateZ="30" className="mb-2">
+                      <Quote className="h-5 w-5 text-red-600 opacity-50" />
+                    </CardItem>
+                    <CardItem translateZ="60" className="mb-4 italic text-sm leading-relaxed flex-grow">
+                      <p className="text-gray-300">
+                        {truncateText(testimonial.comment, 120)}
                       </p>
-                      <Badge variant="outline" className="border-red-600/50 text-red-600 text-xs">
-                        Verified
-                      </Badge>
+                    </CardItem>
+                    
+                    <div className="mt-auto space-y-3">
+                      <CardItem translateZ="20" as="div">
+                        <Button
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            handleReadMore(testimonial)
+                          }}
+                          variant="outline"
+                          className="w-full border-red-600/50 text-red-400 hover:bg-red-600/10 hover:border-red-600 transition-all"
+                        >
+                          Read More
+                        </Button>
+                      </CardItem>
+                      <div className="flex items-center justify-between pt-2 border-t border-red-600/20">
+                        <CardItem translateZ="10" className="text-xs text-gray-500">
+                          <p>Member for {testimonial.months} {testimonial.months === 1 ? "month" : "months"}</p>
+                        </CardItem>
+                        <CardItem translateZ="10">
+                          <Badge variant="outline" className="border-red-600/50 text-red-600 text-xs">
+                            Verified
+                          </Badge>
+                        </CardItem>
+                      </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  </CardBody>
+                </CardContainer>
               </motion.div>
             ))}
           </div>
+
+          {/* View All Testimonials Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-12 text-center"
+          >
+            <Link href="/testimonials">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-8 py-6 rounded-lg font-semibold text-lg transition-all shadow-lg shadow-red-600/50 hover:shadow-xl hover:shadow-red-600/70">
+                  View All Testimonials
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </motion.div>
+            </Link>
+            <p className="text-gray-400 mt-4 text-sm">
+              Read more inspiring stories from our gym family
+            </p>
+          </motion.div>
 
         </div>
         {/* Gradient fade to next section */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent z-10"></div>
       </section>
+
+      {/* Testimonial Modal */}
+      <TestimonialModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        testimonial={selectedTestimonial}
+      />
 
       {/* Services/Gallery Section */}
       <section className="relative py-20 bg-gray-900 overflow-hidden">
@@ -371,7 +454,7 @@ export default function HomePage() {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-gray-900 to-transparent z-10"></div>
         {/* Background Image */}
         <div 
-          className="absolute inset-0 opacity-10"
+          className="absolute inset-0 opacity-30"
           style={{
             backgroundImage: "url('/bg_pic/2.png')",
             backgroundSize: "cover",
@@ -379,7 +462,7 @@ export default function HomePage() {
             backgroundAttachment: "fixed",
           }}
         />
-        <div className="absolute inset-0 bg-black/80"></div>
+        <div className="absolute inset-0 bg-black/60"></div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

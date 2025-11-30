@@ -7,6 +7,7 @@ import {
   HeartPulse, Syringe, Scale, Waves, Bike, Timer, UtensilsCrossed, Home
 } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card"
 import { Badge } from "@/components/ui/badge"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
@@ -84,7 +85,7 @@ export default function CoachesPage() {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent z-10"></div>
         {/* Background Image */}
         <div
-          className="absolute inset-0 opacity-10"
+          className="absolute inset-0 opacity-30"
           style={{
             backgroundImage: "url('/bg_pic/2.png')",
             backgroundSize: "cover",
@@ -92,7 +93,7 @@ export default function CoachesPage() {
             backgroundAttachment: "fixed",
           }}
         />
-        <div className="absolute inset-0 bg-black/80"></div>
+        <div className="absolute inset-0 bg-black/60"></div>
         {/* Gradient fade to next section */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent z-10"></div>
 
@@ -254,12 +255,14 @@ export default function CoachesPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="bg-black border-red-600/30 hover:border-red-600 transition-colors">
-                    <CardContent className="p-4 flex items-center">
-                      <Award className="h-5 w-5 text-red-600 mr-3 flex-shrink-0" />
-                      <span className="text-gray-300">{cert}</span>
-                    </CardContent>
-                  </Card>
+                  <CardContainer containerClassName="py-0" className="w-full">
+                    <CardBody className="bg-black border-red-600/30 hover:border-red-600 transition-colors rounded-xl p-4 flex items-center">
+                      <CardItem translateZ="50" className="flex items-center w-full">
+                        <Award className="h-5 w-5 text-red-600 mr-3 flex-shrink-0" />
+                        <span className="text-gray-300">{cert}</span>
+                      </CardItem>
+                    </CardBody>
+                  </CardContainer>
                 </motion.div>
               ))}
             </div>
@@ -297,18 +300,20 @@ export default function CoachesPage() {
                     whileHover={{ scale: 1.1, rotate: 5, y: -5 }}
                     className="cursor-pointer"
                   >
-                    <Card className="bg-gradient-to-br from-gray-900 to-black border-red-600/30 hover:border-red-600 transition-all group">
-                      <CardContent className="p-6 text-center">
-                        <motion.div
-                          whileHover={{ rotate: 360, scale: 1.2 }}
-                          transition={{ duration: 0.5 }}
+                    <CardContainer containerClassName="py-0" className="w-full">
+                      <CardBody className="bg-gradient-to-br from-gray-900 to-black border-red-600/30 hover:border-red-600 transition-all group rounded-xl p-6 text-center">
+                        <CardItem
+                          translateZ="50"
+                          rotateX={10}
                           className="mb-3"
                         >
                           <IconComponent className="h-8 w-8 text-red-600 mx-auto group-hover:text-red-400 transition-colors" />
-                        </motion.div>
-                        <span className="text-sm text-gray-300 group-hover:text-white transition-colors font-medium">{spec.name}</span>
-                      </CardContent>
-                    </Card>
+                        </CardItem>
+                        <CardItem translateZ="40" className="text-sm text-gray-300 group-hover:text-white transition-colors font-medium">
+                          <span>{spec.name}</span>
+                        </CardItem>
+                      </CardBody>
+                    </CardContainer>
                   </motion.div>
                 )
               })}
@@ -355,25 +360,20 @@ export default function CoachesPage() {
                     whileHover={{ scale: 1.05, y: -5 }}
                     className="cursor-pointer"
                   >
-                    <Card className="bg-black border-2 border-red-600/50 hover:border-red-600 transition-all group">
-                      <CardContent className="p-6 text-center">
-                        <motion.div
-                          animate={{
-                            scale: [1, 1.2, 1],
-                            rotate: [0, 10, -10, 0]
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            repeatDelay: 3
-                          }}
+                    <CardContainer containerClassName="py-0" className="w-full">
+                      <CardBody className="bg-black border-2 border-red-600/50 hover:border-red-600 transition-all group rounded-xl p-6 text-center">
+                        <CardItem
+                          translateZ="50"
+                          rotateX={10}
                           className="mb-4"
                         >
                           <IconComponent className={`h-12 w-12 ${condition.color} mx-auto group-hover:scale-110 transition-transform`} />
-                        </motion.div>
-                        <h3 className="font-semibold text-white group-hover:text-red-400 transition-colors">{condition.name}</h3>
-                      </CardContent>
-                    </Card>
+                        </CardItem>
+                        <CardItem translateZ="40" className="font-semibold text-white group-hover:text-red-400 transition-colors">
+                          <h3>{condition.name}</h3>
+                        </CardItem>
+                      </CardBody>
+                    </CardContainer>
                   </motion.div>
                 )
               })}
@@ -396,20 +396,22 @@ export default function CoachesPage() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto"
           >
-            <Card className="bg-gradient-to-br from-gray-900 to-black border-2 border-red-600/50">
-              <CardHeader className="text-center">
-                <CardTitle className="text-3xl md:text-4xl text-red-600 mb-4">Surendar</CardTitle>
-                <Badge className="bg-red-600 text-white w-fit mx-auto">Professional Trainer</Badge>
-              </CardHeader>
-              <CardContent className="p-8">
-                <p className="text-gray-300 text-center leading-relaxed">
-                  Our dedicated professional trainer Surendar brings expertise and passion to help you
-                  achieve your fitness goals. With years of experience in personal training and group
-                  fitness, Surendar is committed to providing personalized guidance and motivation
-                  to every member.
-                </p>
-              </CardContent>
-            </Card>
+            <CardContainer containerClassName="py-0" className="w-full">
+              <CardBody className="bg-gradient-to-br from-gray-900 to-black border-2 border-red-600/50 rounded-xl">
+                <CardItem translateZ="50" className="text-center p-8">
+                  <CardTitle className="text-3xl md:text-4xl text-red-600 mb-4">Surendar</CardTitle>
+                  <Badge className="bg-red-600 text-white w-fit mx-auto">Professional Trainer</Badge>
+                </CardItem>
+                <CardItem translateZ="40" className="p-8">
+                  <p className="text-gray-300 text-center leading-relaxed">
+                    Our dedicated professional trainer Surendar brings expertise and passion to help you
+                    achieve your fitness goals. With years of experience in personal training and group
+                    fitness, Surendar is committed to providing personalized guidance and motivation
+                    to every member.
+                  </p>
+                </CardItem>
+              </CardBody>
+            </CardContainer>
           </motion.div>
         </div>
       </section>

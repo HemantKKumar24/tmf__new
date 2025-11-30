@@ -151,6 +151,17 @@ export default function FAQPage() {
 
       {/* FAQ Section */}
       <section className="relative py-20 bg-gray-900 overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage: "url('/bg_pic/13.jpeg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+          }}
+        />
+        <div className="absolute inset-0 bg-black/60"></div>
         {/* Gradient fade from previous section */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-gray-900 to-transparent z-10"></div>
         {/* Gradient fade to next section */}

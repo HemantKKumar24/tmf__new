@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { Target, Users, Award, Heart, Dumbbell, TrendingUp } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 
@@ -32,6 +33,17 @@ export default function AboutPage() {
 
       {/* About TMF Gym Section */}
       <section className="relative py-20 bg-gray-900 overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage: "url('/bg_pic/14.jpeg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+          }}
+        />
+        <div className="absolute inset-0 bg-black/60"></div>
         {/* Gradient fade from previous section */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-gray-900 to-transparent z-10"></div>
         {/* Gradient fade to next section */}
@@ -127,6 +139,17 @@ export default function AboutPage() {
 
       {/* Why Choose Us */}
       <section className="relative py-20 bg-gray-900 overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage: "url('/bg_pic/11.jpeg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+          }}
+        />
+        <div className="absolute inset-0 bg-black/60"></div>
         {/* Gradient fade from previous section */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-gray-900 to-transparent z-10"></div>
         {/* Gradient fade to next section */}
@@ -189,19 +212,23 @@ export default function AboutPage() {
                   whileHover={{ y: -10, scale: 1.05 }}
                   className="cursor-pointer"
                 >
-                  <Card className="h-full hover:shadow-2xl hover:shadow-red-600/50 transition-all border-2 border-red-600/30 hover:border-red-600 bg-gradient-to-br from-gray-900 to-black">
-                    <CardContent className="p-6 text-center">
-                      <motion.div
-                        whileHover={{ rotate: 360, scale: 1.2 }}
-                        transition={{ duration: 0.5 }}
+                  <CardContainer containerClassName="py-0" className="w-full">
+                    <CardBody className="h-full hover:shadow-2xl hover:shadow-red-600/50 transition-all border-2 border-red-600/30 hover:border-red-600 bg-gradient-to-br from-gray-900 to-black rounded-xl p-6 text-center">
+                      <CardItem
+                        translateZ="50"
+                        rotateX={10}
                         className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-600/20 mb-4 group-hover:bg-red-600/30 transition-colors"
                       >
                         <IconComponent className="h-8 w-8 text-red-600" />
-                      </motion.div>
-                      <h3 className="text-xl font-semibold mb-3 text-white">{feature.title}</h3>
-                      <p className="text-gray-300">{feature.description}</p>
-                    </CardContent>
-                  </Card>
+                      </CardItem>
+                      <CardItem translateZ="60" className="text-xl font-semibold mb-3 text-white">
+                        <h3>{feature.title}</h3>
+                      </CardItem>
+                      <CardItem translateZ="40" className="text-gray-300">
+                        <p>{feature.description}</p>
+                      </CardItem>
+                    </CardBody>
+                  </CardContainer>
                 </motion.div>
               )
             })}

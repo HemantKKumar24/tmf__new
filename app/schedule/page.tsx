@@ -5,6 +5,7 @@ import { useState } from "react"
 import { Clock, Users, Calendar, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Navbar } from "@/components/navbar"
@@ -197,15 +198,15 @@ export default function SchedulePage() {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-gray-900 to-transparent z-10"></div>
         {/* Background Image */}
         <div 
-          className="absolute inset-0 opacity-15"
+          className="absolute inset-0 opacity-30"
           style={{
-            backgroundImage: "url('/bg_pic/1.png')",
+            backgroundImage: "url('/bg_pic/16.jpeg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundAttachment: "fixed",
           }}
         />
-        <div className="absolute inset-0 bg-black/70"></div>
+        <div className="absolute inset-0 bg-black/60"></div>
         {/* Gradient fade to next section */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -244,17 +245,18 @@ export default function SchedulePage() {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.3 }}
                         >
-                          <Card className="h-full hover:shadow-lg transition-shadow">
-                            <CardHeader>
-                              <div className="flex items-start justify-between">
-                                <CardTitle className="text-xl">{cls.name}</CardTitle>
-                                {isFull(cls) && (
-                                  <Badge variant="destructive">Full</Badge>
-                                )}
-                              </div>
-                              <p className="text-sm text-gray-600 mt-2">{cls.description}</p>
-                            </CardHeader>
-                            <CardContent>
+                          <CardContainer containerClassName="py-0" className="w-full">
+                            <CardBody className="h-full hover:shadow-lg transition-shadow rounded-xl">
+                              <CardItem translateZ="50" className="p-6">
+                                <div className="flex items-start justify-between">
+                                  <CardTitle className="text-xl">{cls.name}</CardTitle>
+                                  {isFull(cls) && (
+                                    <Badge variant="destructive">Full</Badge>
+                                  )}
+                                </div>
+                                <p className="text-sm text-gray-600 mt-2">{cls.description}</p>
+                              </CardItem>
+                              <CardItem translateZ="40" className="p-6 pt-0">
                               <div className="space-y-3 mb-4">
                                 <div className="flex items-center text-sm">
                                   <Users className="h-4 w-4 mr-2 text-red-600" />
@@ -279,8 +281,9 @@ export default function SchedulePage() {
                               >
                                 {isFull(cls) ? "Class Full" : "Book Class"}
                               </Button>
-                            </CardContent>
-                          </Card>
+                              </CardItem>
+                            </CardBody>
+                          </CardContainer>
                         </motion.div>
                       ))}
                     </div>

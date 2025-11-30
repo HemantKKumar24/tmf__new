@@ -6,6 +6,7 @@ import Link from "next/link"
 import { CheckCircle, ArrowRight, Star, DollarSign, TrendingUp, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Navbar } from "@/components/navbar"
@@ -106,9 +107,20 @@ export default function PlansPage() {
       
       {/* Header */}
       <section className="relative bg-gradient-to-br from-black via-red-950 to-black py-20 overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage: "url('/bg_pic/19.jpeg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+          }}
+        />
+        <div className="absolute inset-0 bg-black/60"></div>
         {/* Gradient fade to next section */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent z-10"></div>
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10"></div>
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10 z-0"></div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -184,6 +196,17 @@ export default function PlansPage() {
 
       {/* Plans Grid */}
       <section className="relative py-20 bg-black overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 opacity-25"
+          style={{
+            backgroundImage: "url('/bg_pic/3.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+          }}
+        />
+        <div className="absolute inset-0 bg-black/70"></div>
         {/* Gradient fade from previous section */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent z-10"></div>
         {/* Gradient fade to next section */}
@@ -203,74 +226,76 @@ export default function PlansPage() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ y: -10, transition: { duration: 0.2 } }}
                 >
-                  <Card className={`h-full flex flex-col relative bg-gradient-to-br from-gray-900 to-black border-2 transition-all ${
-                    plan.popular 
-                      ? "border-red-600 shadow-2xl shadow-red-600/50 scale-105" 
-                      : "border-red-600/30 hover:border-red-600"
-                  }`}>
-                    {plan.popular && (
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 0.3, type: "spring" }}
-                        className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10"
-                      >
-                        <Badge className="bg-red-600 text-white px-4 py-1 text-sm font-semibold flex items-center gap-1">
-                          <Star className="h-3 w-3 fill-white" />
-                          Most Popular
-                        </Badge>
-                      </motion.div>
-                    )}
-                    
-                    <CardHeader className="text-center pb-4">
-                      <CardTitle className="text-2xl font-bold text-red-600">{plan.name}</CardTitle>
-                      <p className="text-sm text-gray-400 mt-2">{plan.description}</p>
-                    </CardHeader>
-                    
-                    <CardContent className="flex-1 flex flex-col">
-                      <div className="text-center mb-6">
-                        <div className="flex items-baseline justify-center">
-                          <span className="text-4xl font-bold text-white">{symbol}{price.toLocaleString()}</span>
+                  <CardContainer containerClassName="py-0" className="w-full">
+                    <CardBody className={`h-full flex flex-col relative bg-gradient-to-br from-gray-900 to-black border-2 transition-all rounded-xl ${
+                      plan.popular 
+                        ? "border-red-600 shadow-2xl shadow-red-600/50 scale-105" 
+                        : "border-red-600/30 hover:border-red-600"
+                    }`}>
+                      {plan.popular && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.3, type: "spring" }}
+                          className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10"
+                        >
+                          <Badge className="bg-red-600 text-white px-4 py-1 text-sm font-semibold flex items-center gap-1">
+                            <Star className="h-3 w-3 fill-white" />
+                            Most Popular
+                          </Badge>
+                        </motion.div>
+                      )}
+                      
+                      <CardItem translateZ="50" className="text-center pb-4 px-6 pt-6">
+                        <CardTitle className="text-2xl font-bold text-red-600">{plan.name}</CardTitle>
+                        <p className="text-sm text-gray-400 mt-2">{plan.description}</p>
+                      </CardItem>
+                      
+                      <CardItem translateZ="40" className="flex-1 flex flex-col px-6">
+                        <div className="text-center mb-6">
+                          <div className="flex items-baseline justify-center">
+                            <span className="text-4xl font-bold text-white">{symbol}{price.toLocaleString()}</span>
+                          </div>
+                          <p className="text-sm text-gray-400 mt-1">{getPeriodLabel()}</p>
+                          {billingPeriod !== "monthly" && (
+                            <motion.p
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              className="text-xs text-green-400 mt-1"
+                            >
+                              Save {billingPeriod === "quarterly" ? "10%" : "20%"}
+                            </motion.p>
+                          )}
                         </div>
-                        <p className="text-sm text-gray-400 mt-1">{getPeriodLabel()}</p>
-                        {billingPeriod !== "monthly" && (
-                          <motion.p
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            className="text-xs text-green-400 mt-1"
-                          >
-                            Save {billingPeriod === "quarterly" ? "10%" : "20%"}
-                          </motion.p>
-                        )}
-                      </div>
-                      
-                      <ul className="space-y-3 mb-8 flex-1">
-                        {plan.features.map((feature, idx) => (
-                          <motion.li
-                            key={idx}
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.3, delay: idx * 0.05 }}
-                            className="flex items-start"
-                          >
-                            <CheckCircle className="h-5 w-5 text-red-600 mr-2 flex-shrink-0 mt-0.5" />
-                            <span className="text-sm text-gray-300">{feature}</span>
-                          </motion.li>
-                        ))}
-                      </ul>
-                      
-                      <Button 
-                        asChild 
-                        className={`w-full ${plan.popular ? "bg-red-600 hover:bg-red-700" : "bg-gray-800 hover:bg-red-600 border border-red-600/50"} transition-all`}
-                        size="lg"
-                      >
-                        <Link href={`/payment?plan=${plan.id}&currency=${currency}&period=${billingPeriod}`}>
-                          Select Plan <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
-                    </CardContent>
-                  </Card>
+                        
+                        <ul className="space-y-3 mb-8 flex-1">
+                          {plan.features.map((feature, idx) => (
+                            <motion.li
+                              key={idx}
+                              initial={{ opacity: 0, x: -20 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 0.3, delay: idx * 0.05 }}
+                              className="flex items-start"
+                            >
+                              <CheckCircle className="h-5 w-5 text-red-600 mr-2 flex-shrink-0 mt-0.5" />
+                              <span className="text-sm text-gray-300">{feature}</span>
+                            </motion.li>
+                          ))}
+                        </ul>
+                        
+                        <Button 
+                          asChild 
+                          className={`w-full ${plan.popular ? "bg-red-600 hover:bg-red-700" : "bg-gray-800 hover:bg-red-600 border border-red-600/50"} transition-all`}
+                          size="lg"
+                        >
+                          <Link href={`/payment?plan=${plan.id}&currency=${currency}&period=${billingPeriod}`}>
+                            Select Plan <ArrowRight className="ml-2 h-4 w-4" />
+                          </Link>
+                        </Button>
+                      </CardItem>
+                    </CardBody>
+                  </CardContainer>
                 </motion.div>
               )
             })}
@@ -306,13 +331,19 @@ export default function PlansPage() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <Card className="bg-black border-red-600/30 hover:border-red-600 transition-colors">
-                    <CardContent className="p-6">
-                      <benefit.icon className="h-6 w-6 text-red-600 mb-3" />
-                      <h3 className="font-semibold mb-1 text-white">{benefit.title}</h3>
-                      <p className="text-gray-400 text-sm">{benefit.desc}</p>
-                    </CardContent>
-                  </Card>
+                  <CardContainer containerClassName="py-0" className="w-full">
+                    <CardBody className="bg-black border-red-600/30 hover:border-red-600 transition-colors rounded-xl p-6">
+                      <CardItem translateZ="50" className="mb-3">
+                        <benefit.icon className="h-6 w-6 text-red-600" />
+                      </CardItem>
+                      <CardItem translateZ="40" className="font-semibold mb-1 text-white">
+                        <h3>{benefit.title}</h3>
+                      </CardItem>
+                      <CardItem translateZ="30" className="text-gray-400 text-sm">
+                        <p>{benefit.desc}</p>
+                      </CardItem>
+                    </CardBody>
+                  </CardContainer>
                 </motion.div>
               ))}
             </div>
