@@ -14,6 +14,9 @@ export async function POST(request: Request) {
       )
     }
 
+    // Map form field 'name' to database column 'full_name'
+    const full_name = name
+
     // Check if user already exists in register_login table
     const { data: existingUser, error: checkError } = await supabase
       .from('register_login')
@@ -31,20 +34,15 @@ export async function POST(request: Request) {
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10)
 
-    // Try to insert with standard column names
-    // If table is empty, we can't detect columns, so we'll try standard names
-    // and provide helpful error if they don't exist
-    const insertData: any = {
+    // Insert user into register_login table using the actual schema:
+    // - full_name (not 'name')
+    // - password_hash (not 'password')
+    // - phone (optional, with default 'N/A')
+    const insertData = {
+      full_name,
       email,
-      password: hashedPassword,
-    }
-
-    // Add optional fields
-    if (name) {
-      insertData.name = name
-    }
-    if (phone) {
-      insertData.phone = phone
+      password_hash: hashedPassword,
+      phone: phone || null, // Will use default 'N/A' if null
     }
 
     const { data: user, error: insertError } = await supabase
@@ -58,14 +56,41 @@ export async function POST(request: Request) {
       // Provide detailed error message with instructions
       if (insertError.message?.includes("column")) {
         const missingColumn = insertError.message.match(/column '(\w+)'/)?.[1] || 'unknown'
+        
+        // If password column is missing, this is critical
+        if (missingColumn === 'password') {
+          return NextResponse.json(
+            { 
+              error: "CRITICAL: The 'password' column is missing from 'register_login' table.",
+              details: insertError.message,
+              solution: `
+You MUST add the 'password' column to your table. Run this SQL in Supabase SQL Editor:
+
+ALTER TABLE public.register_login 
+ADD COLUMN password TEXT NOT NULL;
+
+Or if you want to allow NULL temporarily:
+ALTER TABLE public.register_login 
+ADD COLUMN password TEXT NULL;
+
+After adding, you can remove NULL constraint:
+ALTER TABLE public.register_login 
+ALTER COLUMN password SET NOT NULL;
+              `.trim(),
+              checkSchema: "Visit http://localhost:3000/api/auth/check-schema to see your current table structure"
+            },
+            { status: 500 }
+          )
+        }
+        
         return NextResponse.json(
           { 
-            error: "Database schema mismatch. Missing required column in 'register_login' table.",
+            error: "Database schema mismatch. Missing column in 'register_login' table.",
             details: insertError.message,
             requiredColumns: [
               "id (primary key, auto-increment)",
-              "email (text, unique, required)",
-              "password (text, required)",
+              "email (text, unique, required) - MUST EXIST",
+              "password (text, required) - MUST EXIST",
               "name (text, optional)",
               "phone (text, optional)",
               "created_at (timestamp, optional)"
@@ -82,8 +107,8 @@ export async function POST(request: Request) {
       )
     }
 
-    // Return user data (excluding password)
-    const { password: _, ...userWithoutPassword } = user
+    // Return user data (excluding password_hash)
+    const { password_hash: _, ...userWithoutPassword } = user
 
     return NextResponse.json(
       { message: "User created successfully", userId: user.id, user: userWithoutPassword },

@@ -15,6 +15,7 @@ export async function POST(request: Request) {
     }
 
     // Query the register_login table to find user
+    // Schema uses: full_name, email, phone, password_hash
     const { data: user, error: queryError } = await supabase
       .from('register_login')
       .select('*')
@@ -28,12 +29,10 @@ export async function POST(request: Request) {
       )
     }
 
-    // Find password field - try common column name variations
-    const passwordColumns = ['password', 'user_password', 'pwd', 'pass', 'hashed_password', 'password_hash']
-    const userPasswordField = passwordColumns.find(col => user[col as keyof typeof user]) || 'password'
-    const storedPassword = user[userPasswordField as keyof typeof user] as string
+    // Get password_hash from user (schema uses password_hash, not password)
+    const storedPasswordHash = user.password_hash as string
 
-    if (!storedPassword) {
+    if (!storedPasswordHash) {
       console.error("Password field not found in user record. Available fields:", Object.keys(user))
       return NextResponse.json(
         { error: "Invalid email or password" },
@@ -42,7 +41,7 @@ export async function POST(request: Request) {
     }
 
     // Verify password using bcrypt
-    const isPasswordValid = await bcrypt.compare(password, storedPassword)
+    const isPasswordValid = await bcrypt.compare(password, storedPasswordHash)
     
     if (!isPasswordValid) {
       return NextResponse.json(
@@ -51,8 +50,8 @@ export async function POST(request: Request) {
       )
     }
 
-    // Return user data (excluding password)
-    const { password: _, ...userWithoutPassword } = user
+    // Return user data (excluding password_hash)
+    const { password_hash: _, ...userWithoutPassword } = user
 
     return NextResponse.json(
       { 
