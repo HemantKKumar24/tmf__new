@@ -1,16 +1,9 @@
 import { NextResponse } from "next/server"
-import { prisma } from "@/lib/prisma"
+import { supabase } from "@/lib/supabase"
 import bcrypt from "bcryptjs"
 
 export async function POST(request: Request) {
   try {
-    if (!prisma) {
-      return NextResponse.json(
-        { error: "Registration is currently unavailable. Please contact support." },
-        { status: 503 }
-      )
-    }
-
     const body = await request.json()
     const { name, email, phone, password } = body
 
@@ -21,10 +14,12 @@ export async function POST(request: Request) {
       )
     }
 
-    // Check if user already exists
-    const existingUser = await prisma.user.findUnique({
-      where: { email },
-    })
+    // Check if user already exists in register_login table
+    const { data: existingUser, error: checkError } = await supabase
+      .from('register_login')
+      .select('id, email')
+      .eq('email', email)
+      .maybeSingle()
 
     if (existingUser) {
       return NextResponse.json(
@@ -36,18 +31,62 @@ export async function POST(request: Request) {
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10)
 
-    // Create user
-    const user = await prisma.user.create({
-      data: {
-        name,
-        email,
-        phone: phone || null,
-        password: hashedPassword,
-      },
-    })
+    // Try to insert with standard column names
+    // If table is empty, we can't detect columns, so we'll try standard names
+    // and provide helpful error if they don't exist
+    const insertData: any = {
+      email,
+      password: hashedPassword,
+    }
+
+    // Add optional fields
+    if (name) {
+      insertData.name = name
+    }
+    if (phone) {
+      insertData.phone = phone
+    }
+
+    const { data: user, error: insertError } = await supabase
+      .from('register_login')
+      .insert(insertData)
+      .select()
+      .single()
+
+    if (insertError) {
+      console.error("Supabase insert error:", insertError)
+      // Provide detailed error message with instructions
+      if (insertError.message?.includes("column")) {
+        const missingColumn = insertError.message.match(/column '(\w+)'/)?.[1] || 'unknown'
+        return NextResponse.json(
+          { 
+            error: "Database schema mismatch. Missing required column in 'register_login' table.",
+            details: insertError.message,
+            requiredColumns: [
+              "id (primary key, auto-increment)",
+              "email (text, unique, required)",
+              "password (text, required)",
+              "name (text, optional)",
+              "phone (text, optional)",
+              "created_at (timestamp, optional)"
+            ],
+            missingColumn: missingColumn,
+            solution: `Please add the '${missingColumn}' column to your 'register_login' table in Supabase. Visit: http://localhost:3000/api/auth/check-schema to see current table structure.`
+          },
+          { status: 500 }
+        )
+      }
+      return NextResponse.json(
+        { error: "Failed to create user. Please try again." },
+        { status: 500 }
+      )
+    }
+
+    // Return user data (excluding password)
+    const { password: _, ...userWithoutPassword } = user
 
     return NextResponse.json(
-      { message: "User created successfully", userId: user.id },
+      { message: "User created successfully", userId: user.id, user: userWithoutPassword },
       { status: 201 }
     )
   } catch (error) {

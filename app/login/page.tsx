@@ -1,9 +1,10 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Mail, Lock, AlertCircle, Eye, EyeOff } from "lucide-react"
+import { Mail, Lock, AlertCircle, Eye, EyeOff, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -13,13 +14,42 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 
 export default function LoginPage() {
+  const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Login functionality is currently disabled
+    setError("")
+    setLoading(true)
+
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        setError(data.error || "Login failed")
+      } else {
+        // Store user data in localStorage or session
+        if (data.user) {
+          localStorage.setItem("user", JSON.stringify(data.user))
+        }
+        // Redirect to dashboard or home
+        router.push("/dashboard")
+      }
+    } catch (error) {
+      setError("An error occurred. Please try again.")
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -67,6 +97,18 @@ export default function LoginPage() {
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                  >
+                    <Alert variant="destructive" className="bg-red-600/20 border-red-600">
+                      <AlertCircle className="h-4 w-4" />
+                      <AlertDescription className="text-red-300">{error}</AlertDescription>
+                    </Alert>
+                  </motion.div>
+                )}
+
                 <div className="space-y-2">
                   <Label htmlFor="email" className="text-white">Email</Label>
                   <div className="relative">
@@ -78,6 +120,7 @@ export default function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
+                      disabled={loading}
                       className="pl-10 bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
                     />
                   </div>
@@ -94,6 +137,7 @@ export default function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
+                      disabled={loading}
                       className="pl-10 pr-10 bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-600"
                     />
                     <button
@@ -124,10 +168,17 @@ export default function LoginPage() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-6 text-lg opacity-50 cursor-not-allowed"
-                  disabled={true}
+                  className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-6 text-lg disabled:opacity-50"
+                  disabled={loading}
                 >
-                  Coming Soon
+                  {loading ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Signing in...
+                    </>
+                  ) : (
+                    "Sign In"
+                  )}
                 </Button>
               </form>
 

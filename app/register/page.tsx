@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Mail, Lock, User, Phone, AlertCircle, CheckCircle, Eye, EyeOff } from "lucide-react"
+import { Mail, Lock, User, Phone, AlertCircle, CheckCircle, Eye, EyeOff, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -240,10 +240,17 @@ export default function RegisterPage() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-6 text-lg opacity-50 cursor-not-allowed"
-                  disabled={true}
+                  className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-6 text-lg disabled:opacity-50"
+                  disabled={loading}
                 >
-                  Coming Soon
+                  {loading ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Creating account...
+                    </>
+                  ) : (
+                    "Create Account"
+                  )}
                 </Button>
               </form>
 
